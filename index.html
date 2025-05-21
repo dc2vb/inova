@@ -88,278 +88,270 @@
         .inova-footer a:hover {
             text-decoration: underline;
         }
+        /* New style for H2 elements */
+        .h2-cyan-blue {
+            color: #3bbbea; /* Using the cyan blue from phase-tab hover */
+        }
     </style>
 </head>
 <body class="bg-white text-gray-800 antialiased">
 
-    <header class="bg-white text-[#0e296b] py-8 shadow-lg">
-        <div class="container mx-auto px-6 text-center">
-            <div class="flex items-center justify-center mb-2">
-                <img src="https://inovanewsroom.wpenginepowered.com/wp-content/uploads/2023/10/Inova_logo_hrz_pos_tm_rgb.svg" alt="Inova Health System Logo" class="h-4 md:h-6 mr-2" onerror="this.onerror=null; this.src='https://placehold.co/150x50/FFFFFF/0e296b?text=Inova+Logo';">
-                <span class="text-lg md:text-xl text-[#0e296b] pt-2">| FRANK DUENAS</span>
+    <div id="password-overlay" class="fixed inset-0 bg-gray-900 bg-opacity-90 flex items-center justify-center z-50">
+        <div class="bg-white p-8 shadow-xl text-center max-w-sm w-full mx-4">
+            <h2 class="text-2xl font-bold text-[#0e296b] mb-4">Access Required</h2>
+            <p class="text-gray-700 mb-6">Please enter the password to view the AEP Implementation Program.</p>
+            <input type="password" id="password-input" class="w-full px-4 py-2 mb-4 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#0e296b]" placeholder="Enter password">
+            <button id="password-submit" class="w-full bg-[#0e296b] text-white py-2 px-4 rounded-md hover:bg-[#07153d] transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#0e296b] focus:ring-opacity50">Submit</button>
+            <p id="password-error" class="text-red-500 text-sm mt-3 hidden">Incorrect password. Please try again.</p>
+        </div>
+    </div>
+
+    <div id="main-content" class="hidden">
+        <header class="bg-white text-[#0e296b] py-8" style="border-bottom: 5px solid; border-image: linear-gradient(to right, #ff800d 40%, #e458a5 40%, #e458a5 60%, #0abf8d 60%) 1;">
+            <div class="container mx-auto px-6 text-center">
+                <div class="flex items-center justify-center mb-2">
+                    <img src="https://inovanewsroom.wpenginepowered.com/wp-content/uploads/2023/10/Inova_logo_hrz_pos_tm_rgb.svg" alt="Inova Health System Logo" class="h-4 md:h-6 mr-2" onerror="this.onerror=null; this.src='https://placehold.co/150x50/FFFFFF/0e296b?text=Inova+Logo';">
+                    <span class="text-lg md:text-xl text-[#0e296b] pt-2">| FRANK DUENAS</span>
+                </div>
+                <h1 class="text-3xl md:text-4xl font-bold text-[#0e296b] mt-2" style="padding-bottom: 5px;">Adobe Experience Platform (AEP) Implementation Program</h1>
+                <p class="text-lg text-[#0e296b]">A Strategic Guide for Inova Health</p>
             </div>
-            <h1 class="text-3xl md:text-4xl font-bold text-[#0e296b] mt-2">Adobe Experience Platform (AEP) Implementation Program</h1>
-            <p class="text-lg text-[#0e296b]">A Strategic Guide for Inova Health</p>
-        </div>
-    </header>
+        </header>
 
-    <main class="container mx-auto p-4 md:p-8">
-        <nav class="mb-8 flex flex-wrap justify-center gap-2 md:gap-4 border-b border-gray-300 pb-4">
-            <button data-tab="intro" class="main-tab tab-active text-sm py-2 px-4 rounded-full uppercase transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#0e296b] focus:ring-opacity50">Introduction</button>
-            <button data-tab="vision" class="main-tab text-sm py-2 px-4 rounded-full uppercase transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#0e296b] focus:ring-opacity50">Vision & Strategy</button>
-            <button data-tab="phases" class="main-tab text-sm py-2 px-4 rounded-full uppercase transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#0e296b] focus:ring-opacity50">Phased Implementation</button>
-            <button data-tab="value" class="main-tab text-sm py-2 px-4 rounded-full uppercase transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#0e296b] focus:ring-opacity50">My Value Proposition</button>
-            <button data-tab="conclusion" class="main-tab text-sm py-2 px-4 rounded-full uppercase transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#0e296b] focus:ring-opacity50">Conclusion</button>
-        </nav>
+        <main class="container mx-auto p-4 md:p-8">
+            <nav class="mb-8 flex flex-wrap justify-center gap-2 md:gap-4 border-b border-gray-300 pb-4">
+                <button data-tab="intro" class="main-tab tab-active text-sm py-2 px-4 rounded-full uppercase transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#0e296b] focus:ring-opacity50">Introduction</button>
+                <button data-tab="vision" class="main-tab text-sm py-2 px-4 rounded-full uppercase transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#0e296b] focus:ring-opacity50">Vision & Strategy</button>
+                <button data-tab="phases" class="main-tab text-sm py-2 px-4 rounded-full uppercase transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#0e296b] focus:ring-opacity50">Phased Implementation</button>
+                <button data-tab="value" class="main-tab text-sm py-2 px-4 rounded-full uppercase transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#0e296b] focus:ring-opacity50">My Value Proposition</button>
+                <button data-tab="conclusion" class="main-tab text-sm py-2 px-4 rounded-full uppercase transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#0e296b] focus:ring-opacity50">Conclusion</button>
+            </nav>
 
-        <div id="tab-content" class="bg-white p-6 md:p-8 rounded-xl shadow-xl">
-            <section id="intro-content" class="tab-pane">
-                <h2 class="text-2xl font-semibold text-[#07153d] mb-6">Hello Inova Health Team!</h2>
-                <p class="section-intro-text mb-6">
-                    Welcome to this interactive experience! I'm Frank Duenas, and I've put together this dynamic plan to share my strategic vision for how we can truly elevate patient engagement and marketing intelligence at Inova Health. My goal here is to go beyond a static presentation and bring to life my approach to implementing Adobe Experience Platform (AEP) – a powerful tool that I believe can transform how we connect with every patient. I'm excited for you to explore this journey with me!
-                </p>
-                <div class="space-y-4 text-gray-700 leading-relaxed">
-                    <p>Think of this as a living document, a narrative of how we can build a more personalized, efficient, and impactful future for Inova. As you navigate through the sections, you'll see my understanding of the challenges, my strategic solutions, and how my expertise aligns perfectly with your goals. Let's dive in and discover the exciting possibilities together!</p>
-                </div>
-            </section>
-
-            <section id="vision-content" class="tab-pane hidden">
-                <h2 class="text-2xl font-semibold text-[#07153d] mb-6">Our Vision for an Enhanced Patient Experience</h2>
-                <p class="section-intro-text mb-6">
-                    I'm incredibly excited to share my vision for how the Adobe Experience Platform (AEP) will revolutionize how Inova Health connects with our patients. This isn't just about technology; it's about building a truly unified, real-time understanding of every patient, allowing us to deliver personalized, empathetic, and incredibly effective experiences. We're talking about optimizing our marketing efforts and driving significant growth across all our services, all by putting the patient at the very heart of everything we do.
-                </p>
-                <div class="space-y-4 text-gray-700 leading-relaxed">
-                    <p>My goal is to establish a powerful, real-time patient intelligence hub. This hub will empower us to deliver highly personalized, empathetic, and effective patient experiences, optimize our marketing investments, and drive measurable growth across all Inova Health service lines. We'll achieve this by leveraging AEP's incredible capabilities to create a single, holistic view of each patient, analyze their complex healthcare journeys, and activate personalized engagements at a scale we've never seen before. Imagine the possibilities when we truly understand and anticipate our patients' needs!</p>
-
-                    <div class="my-8 text-center p-4">
-                        <img src="https://raw.githubusercontent.com/dc2vb/inova/refs/heads/main/aep-inova-v2.png" alt="Diagram showing AEP as a central hub for patient data" class="w-full max-w-xl mx-auto" onerror="this.onerror=null; this.src='https://placehold.co/600x350/E0F2F7/004B8D?text=AEP+Unified+Data+Hub';">
-                        <p class="text-sm text-gray-500 mt-2">Figure 1: AEP as the central unified patient profile hub, integrating various data sources.</p>
+            <div id="tab-content" class="bg-white p-6 md:p-8 shadow-xl">
+                <section id="intro-content" class="tab-pane">
+                    <h2 class="text-2xl font-semibold h2-cyan-blue mb-6">Hello Inova Health Team!</h2>
+                    <p class="section-intro-text mb-6">
+                        Welcome to this interactive experience! I'm Frank Duenas, and I've put together this dynamic plan to share my strategic vision for how we can truly elevate patient engagement and marketing intelligence at Inova Health. My goal here is to go beyond a static presentation and bring to life my approach to implementing Adobe Experience Platform (AEP) – a powerful tool that I believe can transform how we connect with every patient. I'm excited for you to explore this journey with me!
+                    </p>
+                    <div class="space-y-4 text-gray-700 leading-relaxed">
+                        <p>Think of this as a living document, a narrative of how we can build a more personalized, efficient, and impactful future for Inova. As you navigate through the sections, you'll see my understanding of the challenges, my strategic solutions, and how my expertise aligns perfectly with your goals. Let's dive in and discover the exciting possibilities together!</p>
                     </div>
-                </div>
-            </section>
+                </section>
 
-            <section id="phases-content" class="tab-pane hidden">
-                <h2 class="text-2xl font-semibold text-[#07153d] mb-6">Phased Implementation Plan (8-Week Accelerated)</h2>
-                <p class="section-intro-text mb-8">
-                    This accelerated AEP implementation is structured into five condensed phases, designed for rapid foundational setup and pilot deployment within an 8-week timeframe. Each phase has specific objectives, key activities, and deliverables. Use the navigation on the left to explore each phase in detail. Below is a visual timeline overview of these accelerated phases, including a dedicated "soft launch" period.
-                </p>
+                <section id="vision-content" class="tab-pane hidden">
+                    <h2 class="text-2xl font-semibold h2-cyan-blue mb-6">Our Vision for an Enhanced Patient Experience</h2>
+                    <p class="section-intro-text mb-6">
+                        I'm incredibly excited to share my vision for how the Adobe Experience Platform (AEP) will revolutionize how Inova Health connects with our patients. This isn't just about technology; it's about building a truly unified, real-time understanding of every patient, allowing us to deliver personalized, empathetic, and incredibly effective experiences. We're talking about optimizing our marketing efforts and driving significant growth across all our services, all by putting the patient at the very heart of everything we do.
+                    </p>
+                    <div class="space-y-4 text-gray-700 leading-relaxed">
+                        <p>My goal is to establish a powerful, real-time patient intelligence hub. This hub will empower us to deliver highly personalized, empathetic, and effective patient experiences, optimize our marketing investments, and drive measurable growth across all Inova Health service lines. We'll achieve this by leveraging AEP's incredible capabilities to create a single, holistic view of each patient, analyze their complex healthcare journeys, and activate personalized engagements at a scale we've never seen before. Imagine the possibilities when we truly understand and anticipate our patients' needs!</p>
 
-                <div class="mb-10">
-                    <h3 class="text-xl font-semibold text-[#0e296b] mb-4 text-center">Project Timeline Overview (8-Week Accelerated)</h3>
-                    <div class="chart-container bg-gray-50 p-4 rounded-lg shadow">
-                        <canvas id="timelineChart"></canvas>
+                        <div class="my-8 text-center p-4">
+                            <img src="https://raw.githubusercontent.com/dc2vb/inova/refs/heads/main/aep-inova-v2.png" alt="Diagram showing AEP as a central hub for patient data" class="w-full max-w-xl mx-auto border border-gray-200" onerror="this.onerror=null; this.src='https://placehold.co/600x350/E0F2F7/004B8D?text=AEP+Unified+Data+Hub';">
+                            <p class="text-sm text-gray-500 mt-2">Figure 1: AEP as the central unified patient profile hub, integrating various data sources.</p>
+                        </div>
                     </div>
-                     <p class="text-sm text-center mt-2 text-gray-500">This timeline represents an accelerated, foundational implementation focusing on a critical pilot use case.</p>
-                </div>
+                </section>
 
-                <div class="flex flex-col md:flex-row gap-6 md:gap-8">
-                    <aside class="md:w-1/4">
-                        <nav id="phase-nav" class="space-y-2">
-                            <button data-phase="phase1" class="phase-tab sub-tab-active w-full text-left py-3 px-4 rounded-md hover:bg-[#3bbbea] hover:text-white transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-[#0e296b] focus:ring-opacity50">Phase 1: Discovery</button>
-                            <button data-phase="phase2" class="phase-tab w-full text-left py-3 px-4 rounded-md hover:bg-[#3bbbea] hover:text-white transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-[#0e296b] focus:ring-opacity50">Phase 2: Architecture</button>
-                            <button data-tab="phase3" class="phase-tab w-full text-left py-3 px-4 rounded-md hover:bg-[#3bbbea] hover:text-white transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-[#0e296b] focus:ring-opacity50">Phase 3: Implementation</button>
-                            <button data-phase="phase4" class="phase-tab w-full text-left py-3 px-4 rounded-md hover:bg-[#3bbbea] hover:text-white transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-[#0e296b] focus:ring-opacity50">Phase 4: Testing</button>
-                            <button data-phase="phase5" class="phase-tab w-full text-left py-3 px-4 rounded-md hover:bg-[#3bbbea] hover:text-white transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-[#0e296b] focus:ring-opacity50">Phase 5: Deployment</button>
-                            </nav>
-                    </aside>
-                    <div id="phase-details-content" class="md:w-3/4 space-y-6 content-scroll md:max-h-[70vh] md:overflow-y-auto pr-2">
-                        <article id="phase1-details" class="phase-pane space-y-4">
-                            <h3 class="text-xl font-semibold text-[#0e296b]">Phase 1: Accelerated Discovery & Core Requirements (Weeks 1-2)</h3>
-                            <p class="font-medium text-gray-700"><strong>Objective:</strong> Rapidly define critical business objectives for a pilot AEP implementation, identify key stakeholders, and outline essential data sources within a compressed timeframe.</p>
-                            <div>
-                                <h4 class="font-semibold text-gray-700 mb-2">Key Activities:</h4>
-                                <ul class="list-disc list-inside space-y-2 pl-4 text-gray-600">
-                                    <li><strong>1.1 High-Level Stakeholder Alignment:</strong> Conduct focused workshops to align on a single, high-impact pilot use case for AEP.</li>
-                                    <li><strong>1.2 Core Data Source Identification:</strong> Identify the minimum viable data sources required for the pilot.</li>
-                                    <li><strong>1.3 Critical KPI & Success Definition:</strong> Define 2-3 key metrics for the pilot's success.</li>
-                                    <li class="italic text-[#91125F]">*My Contribution:* Drive swift consensus on pilot scope and critical requirements, leveraging my experience in rapid strategic alignment.</li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-gray-700 mb-2">Deliverables:</h4>
-                                <ul class="list-disc list-inside space-y-1 pl-4 text-gray-600">
-                                    <li>Pilot Use Case Definition & Scope Document</li>
-                                    <li>Identified Core Data Sources for Pilot</li>
-                                    <li>Pilot KPIs & Success Metrics</li>
-                                </ul>
-                            </div>
-                            <button data-phase-id="phase1" class="generate-insights-btn bg-[#91125F] text-white py-2 px-4 rounded-md hover:bg-[#ED4E00] transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#91125F] focus:ring-opacity-50 mt-4">Generate Insights ✨</button>
-                            <div id="insights-phase1" class="insights-output mt-4 p-4 bg-gray-50 rounded-lg border border-gray-200 text-gray-700 hidden">
-                                <p class="text-gray-500">Generating insights...</p>
-                            </div>
-                        </article>
-                        <article id="phase2-details" class="phase-pane hidden space-y-4">
-                            <h3 class="text-xl font-semibold text-[#0e296b]">Phase 2: Foundational Architecture & Data Model (Weeks 3-4)</h3>
-                            <p class="font-medium text-gray-700"><strong>Objective:</strong> Design a lean AEP architecture and a minimal viable Experience Data Model (XDM) to support the identified pilot use case, prioritizing speed to value.</p>
-                             <div>
-                                <h4 class="font-semibold text-gray-700 mb-2">Key Activities:</h4>
-                                <ul class="list-disc list-inside space-y-2 pl-4 text-gray-600">
-                                    <li><strong>2.1 Pilot AEP Architecture Design:</strong> Focus on essential components for the pilot.</li>
-                                    <li><strong>2.2 Minimal Viable XDM Design:</strong> Develop schemas for only the data points critical to the pilot.</li>
-                                    <li><strong>2.3 Streamlined Identity Resolution:</strong> Implement core identity stitching for pilot data.</li>
-                                    <li class="italic text-[#91125F]">*My Contribution:* Ensure the architectural design is pragmatic and focused, avoiding over-engineering for the initial pilot phase.</li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-gray-700 mb-2">Deliverables:</h4>
-                                <ul class="list-disc list-inside space-y-1 pl-4 text-gray-600">
-                                    <li>Pilot AEP Architecture Diagram</li>
-                                    <li>Core XDM Schemas for Pilot</li>
-                                    <li>Pilot Identity Resolution Strategy</li>
-                                </ul>
-                            </div>
-                            <div class="my-8 text-center p-4">
-                                <img src="https://placehold.co/800x450/F0F4F7/004B8D?text=AEP+CRM+Integration+Example" alt="Screenshot of AEP integrating with a CRM system" class="w-full max-w-xl mx-auto rounded-lg shadow-md border border-gray-200" onerror="this.onerror=null; this.src='https://placehold.co/600x350/F0F4F7/004B8D?text=AEP+CRM+Integration';">
-                                <p class="text-sm text-gray-500 mt-2">Figure 2: Illustrative screenshot of AEP's capability to integrate with CRM systems for unified patient profiles.</p>
-                            </div>
-                            <button data-phase-id="phase2" class="generate-insights-btn bg-[#91125F] text-white py-2 px-4 rounded-md hover:bg-[#ED4E00] transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#91125F] focus:ring-opacity-50 mt-4">Generate Insights ✨</button>
-                            <div id="insights-phase2" class="insights-output mt-4 p-4 bg-gray-50 rounded-lg border border-gray-200 text-gray-700 hidden">
-                                <p class="text-gray-500">Generating insights...</p>
-                            </div>
-                        </article>
-                        <article id="phase3-details" class="phase-pane hidden space-y-4">
-                            <h3 class="text-xl font-semibold text-[#0e296b]">Phase 3: Rapid Pilot Implementation & Data Ingestion (Weeks 5-6)</h3>
-                            <p class="font-medium text-gray-700"><strong>Objective:</strong> Quickly build and configure the AEP environment for the pilot, ingesting only the necessary data and setting up core CJA and CDP functionalities for the pilot use case.</p>
-                            <div>
-                                <h4 class="font-semibold text-gray-700 mb-2">Key Activities:</h4>
-                                <ul class="list-disc list-inside space-y-2 pl-4 text-gray-600">
-                                    <li><strong>3.1 Pilot AEP Environment Setup:</strong> Configure essential AEP services for the pilot.</li>
-                                    <li><strong>3.2 Pilot Data Ingestion:</strong> Develop and implement pipelines for pilot data sources.</li>
-                                    <li><strong>3.3 Pilot CJA & CDP Configuration:</strong> Set up CJA data views and CDP segments for the pilot use case.</li>
-                                    <li class="italic text-[#91125F]">*My Contribution:* Drive agile development and configuration, ensuring rapid progress towards the pilot's operational readiness.</li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-gray-700 mb-2">Deliverables:</h4>
-                                <ul class="list-disc list-inside space-y-1 pl-4 text-gray-600">
-                                    <li>Pilot Use Case Definition & Scope Document</li>
-                                    <li>Pilot Data Ingestion</li>
-                                    <li>Configured CJA/CDP for Pilot Use Case</li>
-                                </ul>
-                            </div>
-                            <div class="my-8 text-center p-4">
-                                <img src="https://placehold.co/800x450/E0F2F7/004B8D?text=Adobe+Analytics+Integration+in+AEP" alt="Screenshot of Adobe Analytics data flowing into AEP" class="w-full max-w-xl mx-auto rounded-lg shadow-md border border-gray-200" onerror="this.onerror=null; this.src='https://placehold.co/600x350/E0F2F7/004B8D?text=AEP+Analytics+Integration';">
-                                <p class="text-sm text-gray-500 mt-2">Figure 3: Example visualization of Adobe Analytics data being ingested and utilized within AEP for comprehensive insights.</p>
-                            </div>
-                            <button data-phase-id="phase3" class="generate-insights-btn bg-[#91125F] text-white py-2 px-4 rounded-md hover:bg-[#ED4E00] transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#91125F] focus:ring-opacity-50 mt-4">Generate Insights ✨</button>
-                            <div id="insights-phase3" class="insights-output mt-4 p-4 bg-gray-50 rounded-lg border border-gray-200 text-gray-700 hidden">
-                                <p class="text-gray-500">Generating insights...</p>
-                            </div>
-                        </article>
-                        <article id="phase4-details" class="phase-pane hidden space-y-4">
-                            <h3 class="text-xl font-semibold text-[#0e296b]">Phase 4: Pilot Testing & Optimization (Week 7)</h3>
-                            <p class="font-medium text-gray-700"><strong>Objective:</strong> Conduct focused testing and initial optimization of the pilot AEP implementation to ensure data accuracy and functional performance for the defined use case.</p>
-                            <div>
-                                <h4 class="font-semibold text-gray-700 mb-2">Key Activities:</h4>
-                                <ul class="list-disc list-inside space-y-2 pl-4 text-gray-600">
-                                    <li><strong>4.1 Pilot Data Quality Checks:</strong> Verify data integrity for the pilot use case.</li>
-                                    <li><strong>4.2 Focused UAT for Pilot:</strong> Engage key business users in validating the pilot's functionality.</li>
-                                    <li><strong>4.3 Initial Performance Tuning:</strong> Optimize pilot configurations based on early performance.</li>
-                                    <li class="italic text-[#91125F]">*My Contribution:* Lead rapid iteration cycles, ensuring the pilot is robust and delivers immediate value.</li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-gray-700 mb-2">Deliverables:</h4>
-                                <ul class="list-disc list-inside space-y-1 pl-4 text-gray-600">
-                                    <li>Pilot Data Quality Report</li>
-                                    <li>Pilot UAT Feedback & Adjustments</li>
-                                    <li>Optimized Pilot Configurations</li>
-                                </ul>
-                            </div>
-                            <button data-phase-id="phase4" class="generate-insights-btn bg-[#91125F] text-white py-2 px-4 rounded-md hover:bg-[#ED4E00] transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#91125F] focus:ring-opacity-50 mt-4">Generate Insights ✨</button>
-                            <div id="insights-phase4" class="insights-output mt-4 p-4 bg-gray-50 rounded-lg border border-gray-200 text-gray-700 hidden">
-                                <p class="text-gray-500">Generating insights...</p>
-                            </div>
-                        </article>
-                        <article id="phase5-details" class="phase-pane hidden space-y-4">
-                            <h3 class="text-xl font-semibold text-[#0e296b]">Phase 5: Pilot Go-Live & Initial Enablement (Week 8)</h3>
-                            <p class="font-medium text-gray-700"><strong>Objective:</strong> Successfully launch the AEP pilot use case to a limited audience and provide essential training for initial adoption.</p>
-                            <div>
-                                <h4 class="font-semibold text-gray-700 mb-2">Key Activities:</h4>
-                                <ul class="list-disc list-inside space-y-2 pl-4 text-gray-600">
-                                    <li><strong>5.1 Pilot Go-Live & Soft Launch:</strong> Execute a controlled launch of the pilot use case.</li>
-                                    <li><strong>5.2 Essential User Training:</strong> Provide focused training for immediate pilot users.</li>
-                                    <li><strong>5.3 Initial Performance Monitoring:</strong> Closely track pilot performance and gather feedback.</li>
-                                    <li class="italic text-[#91125F]">*My Contribution:* Ensure a smooth pilot launch and lay the groundwork for broader adoption, demonstrating immediate value.</li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-gray-700 mb-2">Deliverables:</h4>
-                                <ul class="list-disc list-inside space-y-1 pl-4 text-gray-600">
-                                    <li>Pilot Use Case Live</li>
-                                    <li>Pilot User Training Completion</li>
-                                    <li>Initial Pilot Performance Report</li>
-                                </ul>
-                            </div>
-                            <button data-phase-id="phase5" class="generate-insights-btn bg-[#91125F] text-white py-2 px-4 rounded-md hover:bg-[#ED4E00] transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#91125F] focus:ring-opacity-50 mt-4">Generate Insights ✨</button>
-                            <div id="insights-phase5" class="insights-output mt-4 p-4 bg-gray-50 rounded-lg border border-gray-200 text-gray-700 hidden">
-                                <p class="text-gray-500">Generating insights...</p>
-                            </div>
-                        </article>
-                        <article id="phase6-details" class="phase-pane hidden space-y-4">
-                            <h3 class="text-xl font-semibold text-[#0e296b]">Continuous Optimization & Innovation (Ongoing)</h3>
-                            <p class="font-medium text-gray-700"><strong>Objective:</strong> Maximize the long-term value of AEP by continuously optimizing its use, expanding capabilities, and fostering a culture of data-driven innovation beyond the initial 8-week accelerated launch.</p>
-                            <div>
-                                <h4 class="font-semibold text-gray-700 mb-2">Key Activities:</h4>
-                                <ul class="list-disc list-inside space-y-2 pl-4 text-gray-600">
-                                    <li><strong>Ongoing Performance Monitoring & Reporting</strong></li>
-                                    <li><strong>Iterative New Use Case Development & Expansion</strong></li>
-                                    <li><strong>Strategic Feature Adoption & Platform Evolution</strong></li>
-                                    <li><strong>Advanced Analytics & Machine Learning Integration</strong></li>
-                                    <li><strong>Regular Stakeholder Reviews & Feedback Loop</strong></li>
-                                </ul>
-                            </div>
-                             <p class="mt-4 text-sm text-gray-500">This phase represents the continuous, iterative effort to expand AEP's capabilities and value within Inova Health, building upon the successful 8-week foundational launch.</p>
-                            <button data-phase-id="phase6" class="generate-insights-btn bg-[#91125F] text-white py-2 px-4 rounded-md hover:bg-[#ED4E00] transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#91125F] focus:ring-opacity-50 mt-4">Generate Insights ✨</button>
-                            <div id="insights-phase6" class="insights-output mt-4 p-4 bg-gray-50 rounded-lg border border-gray-200 text-gray-700 hidden">
-                                <p class="text-gray-500">Generating insights...</p>
-                            </div>
-                        </article>
+                <section id="phases-content" class="tab-pane hidden">
+                    <h2 class="text-2xl font-semibold h2-cyan-blue mb-6">Phased Implementation Plan (8-Week Accelerated)</h2>
+                    <p class="section-intro-text mb-8">
+                        This accelerated AEP implementation is structured into five condensed phases, designed for rapid foundational setup and pilot deployment within an 8-week timeframe. Each phase has specific objectives, key activities, and deliverables. Use the navigation on the left to explore each phase in detail. Below is a visual timeline overview of these accelerated phases, including a dedicated "soft launch" period.
+                    </p>
+
+                    <div class="mb-10">
+                        <h3 class="text-xl font-semibold text-[#0e296b] mb-4 text-center">Project Timeline Overview (8-Week Accelerated)</h3>
+                        <div class="chart-container bg-gray-50 p-4 shadow">
+                            <canvas id="timelineChart"></canvas>
+                        </div>
+                         <p class="text-sm text-center mt-2 text-gray-500">This timeline represents an accelerated, foundational implementation focusing on a critical pilot use case.</p>
                     </div>
-                </div>
-            </section>
 
-            <section id="value-content" class="tab-pane hidden">
-                <h2 class="text-2xl font-semibold text-[#07153d] mb-6">My Value Proposition as Director, Marketing Intelligence</h2>
-                <p class="section-intro-text mb-6">
-                    This section articulates the unique blend of experience, skills, and strategic thinking I bring to the Director of Marketing Intelligence role. It highlights how my background in leading complex digital initiatives, fostering cross-functional collaboration, and driving measurable results positions me to successfully lead Inova Health's AEP transformation.
-                </p>
-                <div class="space-y-4 text-gray-700 leading-relaxed">
-                    <p>My 15+ years of experience leading enterprise SEO programs, managing high-impact digital accounts, and driving growth for global brands and government organizations position me uniquely for this role. I bring:</p>
-                    <ul class="list-disc list-inside space-y-3 pl-5">
-                        <li><strong>Strategic Acumen & Execution:</strong> I don't just understand the technical nuances of platforms like AEP; I understand how to translate them into clear strategic objectives and measurable business outcomes. My experience in influencing an $830M marketing pipeline and achieving a 78% increase in completed applications demonstrates my ability to connect digital initiatives to significant organizational impact.</li>
-                        <li><strong>Cross-Functional Leadership:</strong> Successfully implementing AEP requires seamless collaboration across Marketing, IT, Patient Experience, and Legal. My track record of partnering closely with diverse teams to align taxonomy, optimize structures, and govern content publishing will be invaluable in fostering the necessary cross-departmental synergy.</li>
-                        <li><strong>Data-Driven Optimization & ROI Focus:</strong> My expertise in leveraging data to grow visibility, engagement, and conversion aligns perfectly with the core purpose of CJA and CDP. I am committed to establishing robust measurement frameworks and continuously optimizing the platform's use to ensure maximum ROI for Inova's marketing investments.</li>
-                        <li><strong>Complex Ecosystem Navigation:</strong> My background managing strategic relationships and digital initiatives within complex environments (e.g., HHS, USDA, Fortune 500 B2B brands) has prepared me for the intricacies of a large healthcare system like Inova. I am adept at aligning content, UX, and performance goals with overarching business outcomes.</li>
-                        <li><strong>Patient-Centric Approach:</strong> Ultimately, the goal is to enhance the patient experience. My focus will always be on how AEP can empower Inova to deliver more personalized, relevant, and supportive interactions throughout the patient journey, driving both satisfaction and health outcomes.</li>
-                    </ul>
-                    <p class="mt-4 font-semibold">I am confident that my blend of strategic vision, technical understanding, and proven leadership in complex digital environments makes me an ideal candidate to lead Inova Health's Marketing Intelligence transformation with AEP.</p>
-                </div>
-            </section>
+                    <div class="flex flex-col md:flex-row gap-6 md:gap-8">
+                        <aside class="md:w-1/4">
+                            <nav id="phase-nav" class="space-y-2">
+                                <button data-phase="phase1" class="phase-tab sub-tab-active w-full text-left py-3 px-4 rounded-md hover:bg-[#3bbbea] hover:text-white transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-[#0e296b] focus:ring-opacity50">Phase 1: Discovery</button>
+                                <button data-phase="phase2" class="phase-tab w-full text-left py-3 px-4 rounded-md hover:bg-[#3bbbea] hover:text-white transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-[#0e296b] focus:ring-opacity50">Phase 2: Architecture</button>
+                                <button data-tab="phase3" class="phase-tab w-full text-left py-3 px-4 rounded-md hover:bg-[#3bbbea] hover:text-white transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-[#0e296b] focus:ring-opacity50">Phase 3: Implementation</button>
+                                <button data-phase="phase4" class="phase-tab w-full text-left py-3 px-4 rounded-md hover:bg-[#3bbbea] hover:text-white transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-[#0e296b] focus:ring-opacity50">Phase 4: Testing</button>
+                                <button data-phase="phase5" class="phase-tab w-full text-left py-3 px-4 rounded-md hover:bg-[#3bbbea] hover:text-white transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-[#0e296b] focus:ring-opacity50">Phase 5: Deployment</button>
+                                </nav>
+                        </aside>
+                        <div id="phase-details-content" class="md:w-3/4 space-y-6 content-scroll md:max-h-[70vh] md:overflow-y-auto pr-2">
+                            <article id="phase1-details" class="phase-pane space-y-4">
+                                <h3 class="text-xl font-semibold text-[#0e296b]">Phase 1: Accelerated Discovery & Core Requirements (Weeks 1-2)</h3>
+                                <p class="font-medium text-gray-700"><strong>Objective:</strong> Rapidly define critical business objectives for a pilot AEP implementation, identify key stakeholders, and outline essential data sources within a compressed timeframe.</p>
+                                <div>
+                                    <h4 class="font-semibold text-gray-700 mb-2">Key Activities:</h4>
+                                    <ul class="list-disc list-inside space-y-2 pl-4 text-gray-600">
+                                        <li><strong>1.1 High-Level Stakeholder Alignment:</strong> Conduct focused workshops to align on a single, high-impact pilot use case for AEP.</li>
+                                        <li><strong>1.2 Core Data Source Identification:</strong> Identify the minimum viable data sources required for the pilot.</li>
+                                        <li><strong>1.3 Critical KPI & Success Definition:</strong> Define 2-3 key metrics for the pilot's success.</li>
+                                        <li class="italic text-[#91125F]">*My Contribution:* Drive swift consensus on pilot scope and critical requirements, leveraging my experience in rapid strategic alignment.</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-700 mb-2">Deliverables:</h4>
+                                    <ul class="list-disc list-inside space-y-1 pl-4 text-gray-600">
+                                        <li>Pilot Use Case Definition & Scope Document</li>
+                                        <li>Identified Core Data Sources for Pilot</li>
+                                        <li>Pilot KPIs & Success Metrics</li>
+                                    </ul>
+                                </div>
+                            </article>
+                            <article id="phase2-details" class="phase-pane hidden space-y-4">
+                                <h3 class="text-xl font-semibold text-[#0e296b]">Phase 2: Foundational Architecture & Data Model (Weeks 3-4)</h3>
+                                <p class="font-medium text-gray-700"><strong>Objective:</strong> Design a lean AEP architecture and a minimal viable Experience Data Model (XDM) to support the identified pilot use case, prioritizing speed to value.</p>
+                                 <div>
+                                    <h4 class="font-semibold text-gray-700 mb-2">Key Activities:</h4>
+                                    <ul class="list-disc list-inside space-y-2 pl-4 text-gray-600">
+                                        <li><strong>2.1 Pilot AEP Architecture Design:</strong> Focus on essential components for the pilot.</li>
+                                        <li><strong>2.2 Minimal Viable XDM Design:</strong> Develop schemas for only the data points critical to the pilot.</li>
+                                        <li><strong>2.3 Streamlined Identity Resolution:</strong> Implement core identity stitching for pilot data.</li>
+                                        <li class="italic text-[#91125F]">*My Contribution:* Ensure the architectural design is pragmatic and focused, avoiding over-engineering for the initial pilot phase.</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-700 mb-2">Deliverables:</h4>
+                                    <ul class="list-disc list-inside space-y-1 pl-4 text-gray-600">
+                                        <li>Pilot AEP Architecture Diagram</li>
+                                        <li>Core XDM Schemas for Pilot</li>
+                                        <li>Pilot Identity Resolution Strategy</li>
+                                    </ul>
+                                </div>
+                                <div class="my-8 text-center p-4">
+                                    <img src="https://placehold.co/800x450/F0F4F7/004B8D?text=AEP+CRM+Integration+Example" alt="Screenshot of AEP integrating with a CRM system" class="w-full max-w-xl mx-auto border border-gray-200" onerror="this.onerror=null; this.src='https://placehold.co/600x350/F0F4F7/004B8D?text=AEP+CRM+Integration';">
+                                    <p class="text-sm text-gray-500 mt-2">Figure 2: Illustrative screenshot of AEP's capability to integrate with CRM systems for unified patient profiles.</p>
+                                </div>
+                            </article>
+                            <article id="phase3-details" class="phase-pane hidden space-y-4">
+                                <h3 class="text-xl font-semibold text-[#0e296b]">Phase 3: Rapid Pilot Implementation & Data Ingestion (Weeks 5-6)</h3>
+                                <p class="font-medium text-gray-700"><strong>Objective:</strong> Quickly build and configure the AEP environment for the pilot, ingesting only the necessary data and setting up core CJA and CDP functionalities for the pilot use case.</p>
+                                <div>
+                                    <h4 class="font-semibold text-gray-700 mb-2">Key Activities:</h4>
+                                    <ul class="list-disc list-inside space-y-2 pl-4 text-gray-600">
+                                        <li><strong>3.1 Pilot AEP Environment Setup:</strong> Configure essential AEP services for the pilot.</li>
+                                        <li><strong>3.2 Pilot Data Ingestion:</strong> Develop and implement pipelines for pilot data sources.</li>
+                                        <li><strong>3.3 Pilot CJA & CDP Configuration:</strong> Set up CJA data views and CDP segments for the pilot use case.</li>
+                                        <li class="italic text-[#91125F]">*My Contribution:* Drive agile development and configuration, ensuring rapid progress towards the pilot's operational readiness.</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-700 mb-2">Deliverables:</h4>
+                                    <ul class="list-disc list-inside space-y-1 pl-4 text-gray-600">
+                                        <li>Pilot Use Case Definition & Scope Document</li>
+                                        <li>Pilot Data Ingestion</li>
+                                        <li>Configured CJA/CDP for Pilot Use Case</li>
+                                    </ul>
+                                </div>
+                                <div class="my-8 text-center p-4">
+                                    <img src="https://placehold.co/800x450/E0F2F7/004B8D?text=Adobe+Analytics+Integration+in+AEP" alt="Screenshot of Adobe Analytics data flowing into AEP" class="w-full max-w-xl mx-auto border border-gray-200" onerror="this.onerror=null; this.src='https://placehold.co/600x350/E0F2F7/004B8D?text=AEP+Analytics+Integration';">
+                                    <p class="text-sm text-gray-500 mt-2">Figure 3: Example visualization of Adobe Analytics data being ingested and utilized within AEP for comprehensive insights.</p>
+                                </div>
+                            </article>
+                            <article id="phase4-details" class="phase-pane hidden space-y-4">
+                                <h3 class="text-xl font-semibold text-[#0e296b]">Phase 4: Pilot Testing & Optimization (Week 7)</h3>
+                                <p class="font-medium text-gray-700"><strong>Objective:</strong> Conduct focused testing and initial optimization of the pilot AEP implementation to ensure data accuracy and functional performance for the defined use case.</p>
+                                <div>
+                                    <h4 class="font-semibold text-gray-700 mb-2">Key Activities:</h4>
+                                    <ul class="list-disc list-inside space-y-2 pl-4 text-gray-600">
+                                        <li><strong>4.1 Pilot Data Quality Checks:</strong> Verify data integrity for the pilot use case.</li>
+                                        <li><strong>4.2 Focused UAT for Pilot:</strong> Engage key business users in validating the pilot's functionality.</li>
+                                        <li><strong>4.3 Initial Performance Tuning:</strong> Optimize pilot configurations based on early performance.</li>
+                                        <li class="italic text-[#91125F]">*My Contribution:* Lead rapid iteration cycles, ensuring the pilot is robust and delivers immediate value.</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-700 mb-2">Deliverables:</h4>
+                                    <ul class="list-disc list-inside space-y-1 pl-4 text-gray-600">
+                                        <li>Pilot Data Quality Report</li>
+                                        <li>Pilot UAT Feedback & Adjustments</li>
+                                        <li>Optimized Pilot Configurations</li>
+                                    </ul>
+                                </div>
+                            </article>
+                            <article id="phase5-details" class="phase-pane hidden space-y-4">
+                                <h3 class="text-xl font-semibold text-[#0e296b]">Phase 5: Pilot Go-Live & Initial Enablement (Week 8)</h3>
+                                <p class="font-medium text-gray-700"><strong>Objective:</strong> Successfully launch the AEP pilot use case to a limited audience and provide essential training for initial adoption.</p>
+                                <div>
+                                    <h4 class="font-semibold text-gray-700 mb-2">Key Activities:</h4>
+                                    <ul class="list-disc list-inside space-y-2 pl-4 text-gray-600">
+                                        <li><strong>5.1 Pilot Go-Live & Soft Launch:</strong> Execute a controlled launch of the pilot use case.</li>
+                                        <li><strong>5.2 Essential User Training:</strong> Provide focused training for immediate pilot users.</li>
+                                        <li><strong>5.3 Initial Performance Monitoring:</strong> Closely track pilot performance and gather feedback.</li>
+                                        <li class="italic text-[#91125F]">*My Contribution:* Ensure a smooth pilot launch and lay the groundwork for broader adoption, demonstrating immediate value.</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-700 mb-2">Deliverables:</h4>
+                                    <ul class="list-disc list-inside space-y-1 pl-4 text-gray-600">
+                                        <li>Pilot Use Case Live</li>
+                                        <li>Pilot User Training Completion</li>
+                                        <li>Initial Pilot Performance Report</li>
+                                    </ul>
+                                </div>
+                            </article>
+                            <article id="phase6-details" class="phase-pane hidden space-y-4">
+                                <h3 class="text-xl font-semibold text-[#0e296b]">Continuous Optimization & Innovation (Ongoing)</h3>
+                                <p class="font-medium text-gray-700"><strong>Objective:</strong> Maximize the long-term value of AEP by continuously optimizing its use, expanding capabilities, and fostering a culture of data-driven innovation beyond the initial 8-week accelerated launch.</p>
+                                <div>
+                                    <h4 class="font-semibold text-gray-700 mb-2">Key Activities:</h4>
+                                    <ul class="list-disc list-inside space-y-2 pl-4 text-gray-600">
+                                        <li><strong>Ongoing Performance Monitoring & Reporting</strong></li>
+                                        <li><strong>Iterative New Use Case Development & Expansion</strong></li>
+                                        <li><strong>Strategic Feature Adoption & Platform Evolution</strong></li>
+                                        <li><strong>Advanced Analytics & Machine Learning Integration</strong></li>
+                                        <li><strong>Regular Stakeholder Reviews & Feedback Loop</strong></li>
+                                    </ul>
+                                </div>
+                                 <p class="mt-4 text-sm text-gray-500">This phase represents the continuous, iterative effort to expand AEP's capabilities and value within Inova Health, building upon the successful 8-week foundational launch.</p>
+                            </article>
+                        </div>
+                    </div>
+                </section>
 
-            <section id="conclusion-content" class="tab-pane hidden">
-                <h2 class="text-2xl font-semibold text-[#07153d] mb-6">Bringing Our Vision to Life: A Call to Action</h2>
-                <p class="section-intro-text mb-6">
-                    Thank you for taking the time to explore this interactive plan. I truly believe that with the right strategic approach and a dedicated team, we can unlock the full potential of Adobe Experience Platform to create unparalleled patient experiences and drive significant value for Inova Health.
-                </p>
-                <div class="space-y-4 text-gray-700 leading-relaxed">
-                    <p>This document is just the beginning of a conversation. I'm eager to discuss these ideas further, answer any questions you might have, and delve into how my skills and passion can directly contribute to your team's success. I'm excited about the opportunity to join Inova Health and help shape the future of patient engagement and marketing intelligence. Let's connect and make this vision a reality!</p>
-                    <p class="mt-4 font-semibold">I look forward to hearing from you soon!</p>
-                </div>
-            </section>
-        </div>
-    </main>
+                <section id="value-content" class="tab-pane hidden">
+                    <h2 class="text-2xl font-semibold h2-cyan-blue mb-6">My Value Proposition as Director, Marketing Intelligence</h2>
+                    <p class="section-intro-text mb-6">
+                        This section articulates the unique blend of experience, skills, and strategic thinking I bring to the Director of Marketing Intelligence role. It highlights how my background in leading complex digital initiatives, fostering cross-functional collaboration, and driving measurable results positions me to successfully lead Inova Health's AEP transformation.
+                    </p>
+                    <div class="space-y-4 text-gray-700 leading-relaxed">
+                        <p>My 15+ years of experience leading enterprise SEO programs, managing high-impact digital accounts, and driving growth for global brands and government organizations position me uniquely for this role. I bring:</p>
+                        <ul class="list-disc list-inside space-y-3 pl-5">
+                            <li><strong>Strategic Acumen & Execution:</strong> I don't just understand the technical nuances of platforms like AEP; I understand how to translate them into clear strategic objectives and measurable business outcomes. My experience in influencing an $830M marketing pipeline and achieving a 78% increase in completed applications demonstrates my ability to connect digital initiatives to significant organizational impact.</li>
+                            <li><strong>Cross-Functional Leadership:</strong> Successfully implementing AEP requires seamless collaboration across Marketing, IT, Patient Experience, and Legal. My track record of partnering closely with diverse teams to align taxonomy, optimize structures, and govern content publishing will be invaluable in fostering the necessary cross-departmental synergy.</li>
+                            <li><strong>Data-Driven Optimization & ROI Focus:</strong> My expertise in leveraging data to grow visibility, engagement, and conversion aligns perfectly with the core purpose of CJA and CDP. I am committed to establishing robust measurement frameworks and continuously optimizing the platform's use to ensure maximum ROI for Inova's marketing investments.</li>
+                            <li><strong>Complex Ecosystem Navigation:</strong> My background managing strategic relationships and digital initiatives within complex environments (e.g., HHS, USDA, Fortune 500 B2B brands) has prepared me for the intricacies of a large healthcare system like Inova. I am adept at aligning content, UX, and performance goals with overarching business outcomes.</li>
+                            <li><strong>Patient-Centric Approach:</strong> Ultimately, the goal is to enhance the patient experience. My focus will always be on how AEP can empower Inova to deliver more personalized, relevant, and supportive interactions throughout the patient journey, driving both satisfaction and health outcomes.</li>
+                        </ul>
+                        <p class="mt-4 font-semibold">I am confident that my blend of strategic vision, technical understanding, and proven leadership in complex digital environments makes me an ideal candidate to lead Inova Health's Marketing Intelligence transformation with AEP.</p>
+                    </div>
+                </section>
 
-    <footer class="inova-footer py-12">
-        <div class="container mx-auto px-6 text-center">
-            <div class="flex flex-col items-center mb-8">
-                <img src="https://www.inova.org/themes/custom/inova_public/logo-dark.svg" alt="Inova Health System Logo" class="h-5 md:h-6 mb-4" onerror="this.onerror=null; this.src='https://placehold.co/75x25/07153d/FFFFFF?text=Inova+Logo';">
-                <p class="text-sm">Developed for the Inova Health Hiring team by Frank Duenas.</p><br>
-                <p class="text-sm">571.294.6634 | frankgduenas@gmail.com | <a href="https://www.linkedin.com/in/fduenas/" target="_blank">Let's Connect on LinkedIn</a></p><br>
-                <p class="text-xs text-gray-400">This experience is proprietary and confidential.</p>
+                <section id="conclusion-content" class="tab-pane hidden">
+                    <h2 class="text-2xl font-semibold h2-cyan-blue mb-6">Bringing Our Vision to Life: A Call to Action</h2>
+                    <p class="section-intro-text mb-6">
+                        Thank you for taking the time to explore this interactive plan. I truly believe that with the right strategic approach and a dedicated team, we can unlock the full potential of Adobe Experience Platform to create unparalleled patient experiences and drive significant value for Inova Health.
+                    </p>
+                    <div class="space-y-4 text-gray-700 leading-relaxed">
+                        <p>This document is just the beginning of a conversation. I'm eager to discuss these ideas further, answer any questions you might have, and delve into how my skills and passion can directly contribute to your team's success. I'm excited about the opportunity to join Inova Health and help shape the future of patient engagement and marketing intelligence. Let's connect and make this vision a reality!</p>
+                        <p class="mt-4 font-semibold">I look forward to hearing from you soon!</p>
+                    </div>
+                </section>
             </div>
-        </div>
-    </footer>
+        </main>
+
+        <footer class="inova-footer py-12">
+            <div class="container mx-auto px-6 text-center">
+                <div class="flex flex-col items-center mb-8">
+                    <img src="https://www.inova.org/themes/custom/inova_public/logo-dark.svg" alt="Inova Health System Logo" class="h-5 md:h-6 mb-4" onerror="this.onerror=null; this.src='https://placehold.co/75x25/07153d/FFFFFF?text=Inova+Logo';">
+                    <p class="text-sm">Developed for the Inova Health Hiring Team by Frank Duenas.</p><br>
+                    <p class="text-sm">571.294.6634 | frankgduenas@gmail.com | <a href="https://www.linkedin.com/in/fduenas/" target="_blank">Let's Connect on LinkedIn</a></p><br>
+                    <p class="text-xs text-gray-400">This experience is proprietary and confidential.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
@@ -367,8 +359,38 @@
             const tabPanes = document.querySelectorAll('.tab-pane');
             const phaseTabs = document.querySelectorAll('.phase-tab');
             const phasePanes = document.querySelectorAll('.phase-pane');
-            const generateButtons = document.querySelectorAll('.generate-insights-btn');
-            const insightsOutputs = document.querySelectorAll('.insights-output');
+            // const generateButtons = document.querySelectorAll('.generate-insights-btn'); // Removed
+            // const insightsOutputs = document.querySelectorAll('.insights-output'); // Removed
+
+            const passwordOverlay = document.getElementById('password-overlay');
+            const passwordInput = document.getElementById('password-input');
+            const passwordSubmit = document.getElementById('password-submit');
+            const passwordError = document.getElementById('password-error');
+            const mainContent = document.getElementById('main-content');
+            const correctPassword = "omnichannel"; // The password has been changed to "omnichannel"
+
+            // Function to check password
+            function checkPassword() {
+                if (passwordInput.value === correctPassword) {
+                    passwordOverlay.classList.add('hidden');
+                    mainContent.classList.remove('hidden');
+                    // Initialize tabs and chart after content is visible
+                    switchMainTab('intro');
+                    switchPhaseTab('phase1');
+                    initializeChart(); // Call chart initialization here
+                } else {
+                    passwordError.classList.remove('hidden');
+                    passwordInput.value = ''; // Clear input on error
+                }
+            }
+
+            // Event listeners for password input
+            passwordSubmit.addEventListener('click', checkPassword);
+            passwordInput.addEventListener('keypress', function(event) {
+                if (event.key === 'Enter') {
+                    checkPassword();
+                }
+            });
 
             // Data for LLM prompts - Updated for 8-week timeline
             const phaseContent = {
@@ -398,40 +420,7 @@
                 }
             };
 
-            async function generatePhaseInsights(phaseId) {
-                const outputDiv = document.getElementById(`insights-${phaseId}`);
-                outputDiv.classList.remove('hidden');
-                outputDiv.innerHTML = '<p class="text-gray-500">Generating insights... Please wait.</p>';
-
-                const content = phaseContent[phaseId];
-                const prompt = `Given the objective "${content.objective}" and key activities including "${content.activities}", provide a concise summary of this phase and highlight 2-3 critical considerations or potential challenges specific to a healthcare AEP implementation in an accelerated timeframe. Format the response as a short paragraph summary followed by a bulleted list of considerations.`;
-
-                let chatHistory = [];
-                chatHistory.push({ role: "user", parts: [{ text: prompt }] });
-                const payload = { contents: chatHistory };
-                const apiKey = ""; 
-                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-
-                try {
-                    const response = await fetch(apiUrl, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(payload)
-                    });
-                    const result = await response.json();
-
-                    if (result.candidates && result.candidates.length > 0 &&
-                        result.candidates[0].content && result.candidates[0].content.parts &&
-                        result.candidates[0].content.parts.length > 0) {
-                        const text = result.candidates[0].content.parts[0].text;
-                        outputDiv.innerHTML = `<p class="font-semibold text-[#0e296b]">AI-Generated Insights:</p><p>${text.replace(/\n/g, '<br>')}</p>`;
-                    } else {
-                        outputDiv.innerHTML = '<p class="text-red-500">Error: Could not generate insights. Please try again.</p>';
-                    }
-                } catch (error) {
-                    outputDiv.innerHTML = `<p class="text-red-500">Error: ${error.message}. Please check your network connection or try again later.</p>`;
-                }
-            }
+            // Removed async function generatePhaseInsights(phaseId) { ... }
 
             function switchMainTab(targetId) {
                 tabPanes.forEach(pane => {
@@ -469,8 +458,8 @@
                         tab.classList.add('hover:bg-[#3bbbea]');
                     }
                 });
-                // Hide all insights outputs when switching phases
-                insightsOutputs.forEach(output => output.classList.add('hidden'));
+                // Removed: Hide all insights outputs when switching phases
+                // insightsOutputs.forEach(output => output.classList.add('hidden'));
             }
 
             mainTabs.forEach(tab => {
@@ -485,156 +474,147 @@
                 });
             });
 
-            generateButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const phaseId = button.dataset.phaseId;
-                    generatePhaseInsights(phaseId);
-                });
-            });
+            // Removed: generateButtons.forEach(button => { ... });
 
-            // Initialize with the first main tab active
-            switchMainTab('intro'); // Set the new intro tab as active by default
-            // Initialize with the first phase tab active
-            switchPhaseTab('phase1');
-
-            // Timeline Chart - Updated for 8-week timeline
-            const timelineCtx = document.getElementById('timelineChart');
-            if (timelineCtx) {
-                const phaseData = {
-                    labels: [
-                        'Phase 1: Accelerated Discovery (2 wks)',
-                        'Phase 2: Foundational Architecture (2 wks)',
-                        'Phase 3: Rapid Pilot Implementation (2 wks)',
-                        'Phase 4: Pilot Testing & Opt. (1 wk)',
-                        'Phase 5: Pilot Go-Live & Enablement (1 wk)',
-                        'Go-Live Soft Launch'
-                    ],
-                    datasets: [{
-                        label: 'Phase Duration (Weeks)',
-                        data: [
-                            { x: [0, 2], y: 'Phase 1: Accelerated Discovery (2 wks)' },
-                            { x: [2, 4], y: 'Phase 2: Foundational Architecture (2 wks)' },
-                            { x: [4, 6], y: 'Phase 3: Rapid Pilot Implementation (2 wks)' },
-                            { x: [6, 7], y: 'Phase 4: Pilot Testing & Opt. (1 wk)' },
-                            { x: [7, 8], y: 'Phase 5: Pilot Go-Live & Enablement (1 wk)' }
+            // Chart Initialization Function
+            function initializeChart() {
+                const timelineCtx = document.getElementById('timelineChart');
+                if (timelineCtx) {
+                    const phaseData = {
+                        labels: [
+                            'Phase 1: Accelerated Discovery (2 wks)',
+                            'Phase 2: Foundational Architecture (2 wks)',
+                            'Phase 3: Rapid Pilot Implementation (2 wks)',
+                            'Phase 4: Pilot Testing & Opt. (1 wk)',
+                            'Phase 5: Pilot Go-Live & Enablement (1 wk)',
+                            'Go-Live Soft Launch'
                         ],
-                        // Changed background color to a slightly lighter, friendlier blue
-                        backgroundColor: [
-                            'rgba(66, 133, 244, 0.8)', /* Google Blue-ish */
-                            'rgba(66, 133, 244, 0.8)',
-                            'rgba(66, 133, 244, 0.8)',
-                            'rgba(66, 133, 244, 0.8)',
-                            'rgba(66, 133, 244, 0.8)'
-                        ],
-                        // Changed border color to match the new background
-                        borderColor: [
-                            'rgba(66, 133, 244, 1)',
-                            'rgba(66, 133, 244, 1)',
-                            'rgba(66, 133, 244, 1)',
-                            'rgba(66, 133, 244, 1)',
-                            'rgba(66, 133, 244, 1)'
-                        ],
-                        borderWidth: 1,
-                        barPercentage: 0.9, /* Thicker bars */
-                        categoryPercentage: 0.9, /* Thicker bars */
-                        borderSkipped: false,
-                    },
-                    {
-                        label: 'Soft Launch Period',
-                        data: [{ x: [7.5, 8], y: 'Go-Live Soft Launch' }], /* Last half-week of Phase 5 */
-                        backgroundColor: 'rgba(145, 18, 95, 0.8)', /* Inova Accent Magenta */
-                        borderColor: 'rgba(145, 18, 95, 1)',
-                        borderWidth: 1,
-                        barPercentage: 0.9, /* Thicker bars */
-                        categoryPercentage: 0.9, /* Thicker bars */
-                        borderSkipped: false,
-                    }]
-                };
-
-                new Chart(timelineCtx, {
-                    type: 'bar',
-                    data: phaseData,
-                    options: {
-                        indexAxis: 'y',
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        scales: {
-                            x: {
-                                title: {
-                                    display: true,
-                                    text: 'Project Timeline (Weeks from Start)',
-                                    font: { size: 14, weight: '500' },
-                                    color: '#374151'
-                                },
-                                min: 0,
-                                max: 8.5, /* Adjusted max for 8 weeks */
-                                grid: {
-                                    color: '#d1d5db' /* Softer gridlines */
-                                },
-                                ticks: {
-                                    color: '#4b5563'
-                                }
-                            },
-                            y: {
-                                grid: {
-                                    display: false
-                                },
-                                ticks: {
-                                   font: { size: 11 },
-                                   color: '#4b5563',
-                                   callback: function(value) {
-                                        const label = this.getLabelForValue(value);
-                                        const maxLength = 20;
-                                        if (label.length > maxLength) {
-                                            let lines = [];
-                                            let currentLine = '';
-                                            label.split(' ').forEach(word => {
-                                                if ((currentLine + word).length > maxLength) {
-                                                    lines.push(currentLine.trim());
-                                                    currentLine = '';
-                                                }
-                                                currentLine += word + ' ';
-                                            });
-                                            lines.push(currentLine.trim());
-                                            return lines;
-                                        }
-                                        return label;
-                                   }
-                                }
-                            }
+                        datasets: [{
+                            label: 'Phase Duration (Weeks)',
+                            data: [
+                                { x: [0, 2], y: 'Phase 1: Accelerated Discovery (2 wks)' },
+                                { x: [2, 4], y: 'Phase 2: Foundational Architecture (2 wks)' },
+                                { x: [4, 6], y: 'Phase 3: Rapid Pilot Implementation (2 wks)' },
+                                { x: [6, 7], y: 'Phase 4: Pilot Testing & Opt. (1 wk)' },
+                                { x: [7, 8], y: 'Phase 5: Pilot Go-Live & Enablement (1 wk)' }
+                            ],
+                            backgroundColor: [
+                                'rgba(66, 133, 244, 0.8)', /* Google Blue-ish */
+                                'rgba(66, 133, 244, 0.8)',
+                                'rgba(66, 133, 244, 0.8)',
+                                'rgba(66, 133, 244, 0.8)',
+                                'rgba(66, 133, 244, 0.8)'
+                            ],
+                            borderColor: [
+                                'rgba(66, 133, 244, 1)',
+                                'rgba(66, 133, 244, 1)',
+                                'rgba(66, 133, 244, 1)',
+                                'rgba(66, 133, 244, 1)',
+                                'rgba(66, 133, 244, 1)'
+                            ],
+                            borderWidth: 1,
+                            barPercentage: 0.9, /* Thicker bars */
+                            categoryPercentage: 0.9, /* Thicker bars */
+                            borderSkipped: false,
                         },
-                        plugins: {
-                            legend: {
-                                display: true,
-                                position: 'bottom',
-                                labels: {
-                                    color: '#4b5563',
-                                    font: { size: 12 },
-                                    boxWidth: 20,
-                                    boxHeight: 10
+                        {
+                            label: 'Soft Launch Period',
+                            data: [{ x: [7.5, 8], y: 'Go-Live Soft Launch' }], /* Last half-week of Phase 5 */
+                            backgroundColor: 'rgba(145, 18, 95, 0.8)', /* Inova Accent Magenta */
+                            borderColor: 'rgba(145, 18, 95, 1)',
+                            borderWidth: 1,
+                            barPercentage: 0.9, /* Thicker bars */
+                            categoryPercentage: 0.9, /* Thicker bars */
+                            borderSkipped: false,
+                        }]
+                    };
+
+                    new Chart(timelineCtx, {
+                        type: 'bar',
+                        data: phaseData,
+                        options: {
+                            indexAxis: 'y',
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            scales: {
+                                x: {
+                                    title: {
+                                        display: true,
+                                        text: 'Project Timeline (Weeks from Start)',
+                                        font: { size: 14, weight: '500' },
+                                        color: '#374151'
+                                    },
+                                    min: 0,
+                                    max: 8.5, /* Adjusted max for 8 weeks */
+                                    grid: {
+                                        color: '#d1d5db' /* Softer gridlines */
+                                    },
+                                    ticks: {
+                                        color: '#4b5563'
+                                    }
+                                },
+                                y: {
+                                    grid: {
+                                        display: false
+                                    },
+                                    ticks: {
+                                       font: { size: 11 },
+                                       color: '#4b5563',
+                                       callback: function(value) {
+                                            const label = this.getLabelForValue(value);
+                                            const maxLength = 20;
+                                            if (label.length > maxLength) {
+                                                let lines = [];
+                                                let currentLine = '';
+                                                label.split(' ').forEach(word => {
+                                                    if ((currentLine + word).length > maxLength) {
+                                                        lines.push(currentLine.trim());
+                                                        currentLine = '';
+                                                    }
+                                                    currentLine += word + ' ';
+                                                });
+                                                lines.push(currentLine.trim());
+                                                return lines;
+                                            }
+                                            return label;
+                                       }
+                                    }
                                 }
                             },
-                            tooltip: {
-                                enabled: true,
-                                mode: 'index',
-                                intersect: false,
-                                backgroundColor: 'rgba(0,0,0,0.8)',
-                                titleFont: { size: 14, weight: 'bold'},
-                                bodyFont: { size: 12 },
-                                callbacks: {
-                                    label: function(context) {
-                                        const item = context.dataset.data[context.dataIndex];
-                                        return `Duration: ${item.x[1] - item.x[0]} weeks (Weeks ${item.x[0]+1}-${item.x[1]})`;
-                                    },
-                                    title: function(context) {
-                                        return context[0].label.split('(')[0].trim();
+                            plugins: {
+                                legend: {
+                                    display: true,
+                                    position: 'bottom',
+                                    labels: {
+                                        color: '#4b5563',
+                                        font: { size: 12 },
+                                        boxWidth: 20,
+                                        boxHeight: 10
+                                    }
+                                },
+                                tooltip: {
+                                    enabled: true,
+                                    mode: 'index',
+                                    intersect: false,
+                                    backgroundColor: 'rgba(0,0,0,0.8)',
+                                    titleFont: { size: 14, weight: 'bold'},
+                                    bodyFont: { size: 12 },
+                                    callbacks: {
+                                        label: function(context) {
+                                            const item = context.dataset.data[context.dataIndex];
+                                            return `Duration: ${item.x[1] - item.x[0]} weeks (Weeks ${item.x[0]+1}-${item.x[1]})`;
+                                        },
+                                        title: function(context) {
+                                            return context[0].label.split('(')[0].trim();
+                                        }
                                     }
                                 }
                             }
                         }
-                    }
-                });
+                    });
+                }
             }
+            // Do not initialize chart or tabs here, they will be initialized after password check
         });
     </script>
 </body>

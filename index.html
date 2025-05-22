@@ -139,13 +139,13 @@
         .animated-list-item.is-visible:nth-child(9) { transition-delay: 0.9s; }
         .animated-list-item.is-visible:nth-child(10) { transition-delay: 1.0s; }
 
-        /* Tab content transition */
+        /* Tab content - NO FADE ANIMATION */
         .tab-pane {
-            opacity: 0;
-            transition: opacity 0.5s ease-in-out;
+            /* opacity: 0; */ /* Removed opacity and transition from here */
+            /* transition: opacity 0.5s ease-in-out; */ /* Removed */
         }
         .tab-pane.active-tab-content {
-            opacity: 1;
+            /* opacity: 1; */ /* Removed */
         }
 
         /* Header text animation */
@@ -287,9 +287,9 @@
                                     <li class="animated-list-item">Pilot Use Case Definition & Scope Document</li>
                                     <li class="animated-list-item">Identified Core Data Sources for Pilot</li>
                                     <li class="animated-list-item">Pilot KPIs & Success Metrics</li>
-                                </ul>
-                            </div>
+                            </ul>
                         </div>
+                    </div>
 
                         <div id="phase2-card" class="phase-content-card hidden p-6">
                             <h3 class="text-xl font-semibold text-[#0e296b] mb-4 animate-on-scroll">Phase 2: Foundational Architecture & Data Model (Weeks 3-4)</h3>
@@ -410,16 +410,16 @@
                     </div>
                 </section>
 
-                <section id="value-content" class="tab-pane hidden max-w-3xl mx-auto">
-                    <h2 class="text-2xl font-semibold h2-cyan-blue mb-6 animate-on-scroll">My Value Proposition as Director, Marketing Intelligence</h2>
-                    <p class="section-intro-text mb-6 animate-on-scroll">
+                <section id="value-content" class="tab-pane hidden py-12 max-w-3xl mx-auto animate-on-scroll">
+                    <h2 class="text-2xl font-semibold h2-cyan-blue mb-6">My Value Proposition as Director, Marketing Intelligence</h2>
+                    <p class="section-intro-text mb-6">
                         This section articulates the unique blend of experience, skills, and strategic thinking I bring to the Director of Marketing Intelligence role. It highlights how my background in leading complex digital initiatives, fostering cross-functional collaboration, and driving measurable results positions me to successfully lead Inova Health's AEP transformation.
                     </p>
                     <div class="space-y-4 text-gray-700 leading-relaxed">
                         <p class="animate-on-scroll">My 15+ years of experience leading enterprise SEO programs, managing high-impact digital accounts, and driving growth for global brands and government organizations position me uniquely for this role. I bring:</p>
                         <ul class="list-disc list-inside space-y-3 pl-5">
                             <li class="animated-list-item"><strong>Strategic Acumen & Execution:</strong> I don't just understand the technical nuances of platforms like AEP; I understand how to translate them into clear strategic objectives and measurable business outcomes. My experience in influencing an $830M marketing pipeline and achieving a 78% increase in completed applications demonstrates my ability to connect digital initiatives to significant organizational impact.</li>
-                            <li class="animated-list-item"><strong>Cross-Functional Leadership:</strong> Successfully implementing AEP requires seamless collaboration across Marketing, IT, Patient Experience, and Legal. My track record of partnering closely with diverse teams to align taxonomy, optimize structures, and govern content publishing will be invaluable in fostering the necessary cross-departmental synergy.</li>
+                            <li class="animated-list-item"><strong>Cross-Functional Leadership:</b> Successfully implementing AEP requires seamless collaboration across Marketing, IT, Patient Experience, and Legal. My track record of partnering closely with diverse teams to align taxonomy, optimize structures, and govern content publishing will be invaluable in fostering the necessary cross-departmental synergy.</li>
                             <li class="animated-list-item"><strong>Data-Driven Optimization & ROI Focus:</strong> My expertise in leveraging data to grow visibility, engagement, and conversion aligns perfectly with the core purpose of CJA and CDP. I am committed to establishing robust measurement frameworks and continuously optimizing the platform's use to ensure maximum ROI for Inova's marketing investments.</li>
                             <li class="animated-list-item"><strong>Complex Ecosystem Navigation:</strong> My background managing strategic relationships and digital initiatives within complex environments (e.g., HHS, USDA, Fortune 500 B2B brands) has prepared me for the intricacies of a large healthcare system like Inova. I am adept at aligning content, UX, and performance goals with overarching business outcomes.</li>
                             <li class="animated-list-item"><strong>Patient-Centric Approach:</strong> Ultimately, the goal is to enhance the patient experience. My focus will always be on how AEP can empower Inova to deliver more personalized, relevant, and supportive interactions throughout the patient journey, driving both satisfaction and health outcomes.</li>
@@ -428,9 +428,9 @@
                     </div>
                 </section>
 
-                <section id="conclusion-content" class="tab-pane hidden max-w-3xl mx-auto">
-                    <h2 class="text-2xl font-semibold h2-cyan-blue mb-6 animate-on-scroll">Bringing Our Vision to Life: A Call to Action</h2>
-                    <p class="section-intro-text mb-6 animate-on-scroll">
+                <section id="conclusion-content" class="tab-pane hidden py-12 max-w-3xl mx-auto animate-on-scroll">
+                    <h2 class="text-2xl font-semibold h2-cyan-blue mb-6">Bringing Our Vision to Life: A Call to Action</h2>
+                    <p class="section-intro-text mb-6">
                         Thank you for taking the time to explore this interactive plan. I truly believe that with the right strategic approach and a dedicated team, we can unlock the full potential of Adobe Experience Platform to create unparalleled patient experiences and drive significant value for Inova Health.
                     </p>
                     <div class="space-y-4 text-gray-700 leading-relaxed">
@@ -575,6 +575,12 @@
                 }
             });
 
+            mainTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    switchMainTab(tab.dataset.tab);
+                });
+            });
+
             function switchMainTab(targetId) {
                 const currentActivePane = document.querySelector('.tab-pane.active-tab-content');
                 const targetPane = document.getElementById(targetId + '-content');
@@ -594,55 +600,19 @@
                     }
                 });
 
-                let transitionEnded = false; // Flag to prevent double execution
+                // Hide all tab panes first
+                tabPanes.forEach(pane => {
+                    pane.classList.add('hidden');
+                    pane.classList.remove('active-tab-content');
+                });
 
-                // Function to activate the new pane
-                const activateNewPane = () => {
-                    if (transitionEnded) return; // Prevent double execution
-                    transitionEnded = true;
-
-                    // Ensure all other panes are hidden before showing the target
-                    tabPanes.forEach(pane => {
-                        if (pane !== targetPane) {
-                            pane.classList.add('hidden');
-                            pane.classList.remove('active-tab-content');
-                            pane.style.opacity = 0;
-                        }
-                    });
-
-                    if (targetPane) {
-                        targetPane.classList.remove('hidden'); // Make it display: block
-                        void targetPane.offsetWidth; // Force reflow to ensure transition
-                        targetPane.classList.add('active-tab-content'); // Trigger fade-in
-                        resetAndObserveAnimations(targetPane);
-                    }
-                    handlePhasesSpecificLogic(targetId);
-                };
-
-                if (currentActivePane) {
-                    // Remove active-tab-content to start fade-out
-                    currentActivePane.classList.remove('active-tab-content');
-                    currentActivePane.style.opacity = 0; // Explicitly set opacity to 0
-
-                    // Add event listener for transition end
-                    const onTransitionEnd = () => {
-                        currentActivePane.removeEventListener('transitionend', onTransitionEnd);
-                        activateNewPane(); // Activate new pane after current one fades out
-                    };
-                    currentActivePane.addEventListener('transitionend', onTransitionEnd);
-
-                    // Fallback timeout in case transitionend doesn't fire (e.g., interrupted by quick clicks)
-                    setTimeout(() => {
-                        if (!transitionEnded) { // Check the flag again before activating
-                            transitionEnded = true; // Set the flag if timeout wins
-                            currentActivePane.removeEventListener('transitionend', onTransitionEnd); // Clean up in case timeout wins
-                            activateNewPane();
-                        }
-                    }, 600); // Slightly longer than CSS transition (0.5s)
-                } else {
-                    // Initial load or no current active pane
-                    activateNewPane();
+                // Then show only the target pane
+                if (targetPane) {
+                    targetPane.classList.remove('hidden');
+                    targetPane.classList.add('active-tab-content');
+                    resetAndObserveAnimations(targetPane); // Re-observe animations for the active tab content
                 }
+                handlePhasesSpecificLogic(targetId);
             }
 
             function handlePhasesSpecificLogic(targetId) {
@@ -663,9 +633,9 @@
                 }
             }
 
-            mainTabs.forEach(tab => {
-                tab.addEventListener('click', () => {
-                    switchMainTab(tab.dataset.tab);
+            stepButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    showPhaseContent(button.dataset.phase);
                 });
             });
 
@@ -694,12 +664,6 @@
                     resetAndObserveAnimations(targetCard); // Re-observe animations for the active phase card
                 }
             }
-
-            stepButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    showPhaseContent(button.dataset.phase);
-                });
-            });
 
             function initializeChart() {
                 const timelineCtx = document.getElementById('timelineChart');

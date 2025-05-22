@@ -16,7 +16,8 @@
 
   gtag('config', 'G-0990RNK4MP');
 </script>
-    
+
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
@@ -37,6 +38,8 @@
             background-color: transparent;
             color: #4b5563;
             border: 1px solid transparent;
+            font-size: 0.75rem; /* Smaller font size */
+            font-weight: bold; /* Bold font */
         }
         .main-tab:hover {
             background-color: #E6F0F7;
@@ -44,15 +47,20 @@
             border-color: transparent;
         }
         .tab-active {
-            background-color: #F0F4F7;
-            border-color: #004B8D;
-            color: #004B8D;
+            background-color: #0e296b; /* Dark Inova blue */
+            border-color: #0e296b; /* Dark Inova blue */
+            color: white; /* White text for active tab */
+            font-size: 0.75rem; /* Smaller font size */
+            font-weight: bold; /* Bold font */
         }
         /* New styles for step navigation */
         .step-button {
             background-color: #e2e8f0; /* Light gray for inactive steps */
             color: #4a5568;
             transition: all 0.3s ease;
+            font-weight: bold; /* Bold font for phase buttons */
+            font-size: 0.75rem; /* Smaller font size for phase buttons */
+            border-radius: 9999px; /* Ensure pill shape for phase buttons */
         }
         .step-button.active {
             background-color: #0e296b; /* Primary Blue for active step */
@@ -80,11 +88,37 @@
             display: none;
         }
 
-        .section-intro-text {
-            font-size: 1.05em;
-            line-height: 1.6;
-            color: #4b5563;
+        /* General paragraph and list item styling within the main content */
+        #tab-content p,
+        #tab-content ul li {
+            font-size: 0.9em; /* Makes text 10% smaller than default browser size (1em) */
+            line-height: 1.7; /* Slightly increased line-height */
         }
+
+        /* Specific styling for the intro text, which was originally slightly larger */
+        .section-intro-text {
+            font-size: 0.95em; /* This will make it 10% smaller than its original 1.05em. 1.05 * 0.9 = 0.945, so 0.95em is a good approximation. */
+            line-height: 1.7; /* Ensure it also gets the increased line-height */
+            color: #4b5563; /* Keep original color */
+        }
+
+        /* Override for Tailwind's text-sm and text-xs to ensure they are not affected by the general 0.9em change */
+        #tab-content .text-sm {
+            font-size: 0.875rem; /* Retain original 14px size */
+            line-height: 1.5; /* Retain default line-height for small text */
+        }
+        #tab-content .text-xs {
+            font-size: 0.75rem; /* Retain original 12px size */
+            line-height: 1.5; /* Retain default line-height for extra small text */
+        }
+
+        /* Styling for the login prompt paragraph to match standard paragraph text */
+        .login-prompt-text {
+            font-size: 0.9em; /* Match standard paragraph font size */
+            line-height: 1.7; /* Match standard paragraph line height */
+            color: #4b5563; /* Match standard paragraph color */
+        }
+
 
         /* Custom footer styles to replicate background pattern */
         .inova-footer {
@@ -175,10 +209,9 @@
             background-color: #0e296b; /* Base dark blue */
             background-image: radial-gradient(circle at 0% 0%, #e0710b 0%, transparent 31.25%), /* Orange burst 25% larger and 12% darker */
                               radial-gradient(circle at 100% 100%, #e458a5 0%, transparent 15.625%), /* Purple burst 25% larger */
-                              radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.2) 0%, transparent 50%),
-                              url('https://inovanewsroom.wpenginepowered.com/wp-content/uploads/2023/10/Inova_logo_hrz_pos_tm_rgb.svg'); /* Inova logo watermark */
-            background-size: 200%, 200%, 100%, 250%; /* Scale bursts and logo */
-            background-position: 0% 0%, 100% 100%, 50% 50%, -50% -50%; /* Position bursts and offset logo */
+                              radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.2) 0%, transparent 50%);
+            background-size: 200%, 200%, 100%; /* Scale bursts */
+            background-position: 0% 0%, 100% 100%, 50% 50%; /* Position bursts */
             background-repeat: no-repeat;
             opacity: 1; /* Ensure overlay is visible */
         }
@@ -196,12 +229,13 @@
 <body class="bg-white text-gray-800 antialiased">
 
     <div id="password-overlay" class="fixed inset-0 flex items-center justify-center z-50">
-        <div class="bg-white p-8 shadow-xl text-center max-w-sm w-full mx-4 rounded-lg">
+        <div class="bg-white p-8 shadow-xl text-center max-w-sm w-full mx-4">
             <img src="https://inovanewsroom.wpenginepowered.com/wp-content/uploads/2023/10/Inova_logo_hrz_pos_tm_rgb.svg" alt="Inova Health System Logo" class="h-8 mx-auto mb-4" onerror="this.onerror=null; this.src='https://placehold.co/100x30/FFFFFF/0e296b?text=Inova+Logo';">
             <h2 class="text-2xl font-bold text-[#0e296b] mb-4">Welcome,<br>Inova Hiring Team!</h2>
-            <p class="text-gray-700 mb-6">Please enter the password to view the AEP Implementation Program.</p>
-            <input type="password" id="password-input" class="w-full px-4 py-2 mb-4 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#0e296b] rounded-md" placeholder="Please enter password">
-            <button id="password-submit" class="w-full bg-[#0e296b] text-white py-2 px-4 rounded-md hover:bg-[#07153d] transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#0e296b] focus:ring-opacity50">Let's Go!</button>
+            <p class="login-prompt-text mb-6">Please enter the password to view the AEP Implementation Program.</p>
+            <input type="password" id="password-input" class="w-full px-4 py-2 mb-4 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#0e296b]" placeholder="Please enter password">
+            <div id="password-error" class="text-red-500 text-sm mb-4 hidden">Incorrect password. Please try again.</div>
+            <button id="password-submit" class="w-full bg-[#0e296b] text-white py-2 px-4 hover:bg-[#07153d] transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#0e296b] focus:ring-opacity50">Let's Go!</button>
             <p class="text-xs text-gray-500 mt-3">© 2025 Frank Duenas.</p>
         </div>
     </div>
@@ -213,39 +247,37 @@
                     <img src="https://inovanewsroom.wpenginepowered.com/wp-content/uploads/2023/10/Inova_logo_hrz_pos_tm_rgb.svg" alt="Inova Health System Logo" class="h-4 md:h-6 mr-2" onerror="this.onerror=null; this.src='https://placehold.co/150x50/FFFFFF/0e296b?text=Inova+Logo';">
                     <span class="text-lg md:text-xl text-[#0e296b] pt-2">| FRANK DUENAS</span>
                 </div>
-                <h1 id="header-title" class="text-3xl md:text-4xl font-bold text-[#0e296b] mt-2" style="padding-bottom: 5px;">Adobe Experience Platform (AEP) Implementation Program</h1>
+                <h1 id="header-title" class="text-3xl md:text-4xl font-bold text-[#0e296b] mt-2" style="padding-bottom: 5px;">Adobe Experience Platform (AEP)<br> Implementation Program</h1>
                 <p id="header-subtitle" class="text-lg text-[#0e296b]">A Strategic Guide for Inova Health</p>
             </div>
         </header>
 
         <main class="container mx-auto p-4 md:p-8">
             <nav class="mb-8 flex flex-wrap justify-center gap-2 md:gap-4 border-b border-gray-300 pb-4">
-                <button data-tab="intro" class="main-tab tab-active text-sm py-2 px-4 rounded-full uppercase transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#0e296b] focus:ring-opacity50">Introduction</button>
-                <button data-tab="vision" class="main-tab text-sm py-2 px-4 rounded-full uppercase transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#0e296b] focus:ring-opacity50">Vision & Strategy</button>
-                <button data-tab="phases" class="main-tab text-sm py-2 px-4 rounded-full uppercase transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#0e296b] focus:ring-opacity50">Phased Implementation</button>
-                <button data-tab="value" class="main-tab text-sm py-2 px-4 rounded-full uppercase transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#0e296b] focus:ring-opacity50">My Value Proposition</button>
-                <button data-tab="conclusion" class="main-tab text-sm py-2 px-4 rounded-full uppercase transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#0e296b] focus:ring-opacity50">Conclusion</button>
+                <button data-tab="intro" class="main-tab tab-active py-2 px-4 rounded-full uppercase transition-colors duration-200 focus:outline-none">Introduction</button>
+                <button data-tab="vision" class="main-tab py-2 px-4 rounded-full uppercase transition-colors duration-200 focus:outline-none">Vision & Strategy</button>
+                <button data-tab="phases" class="main-tab py-2 px-4 rounded-full uppercase transition-colors duration-200 focus:outline-none">Phased Implementation</button>
+                <button data-tab="value" class="main-tab py-2 px-4 rounded-full uppercase transition-colors duration-200 focus:outline-none">My Value Proposition</button>
+                <button data-tab="conclusion" class="main-tab py-2 px-4 rounded-full uppercase transition-colors duration-200 focus:outline-none">Conclusion</button>
             </nav>
 
-            <div id="tab-content" class="bg-white p-6 md:p-8 shadow-xl rounded-lg">
+            <div id="tab-content" class="bg-white p-6 md:p-8 shadow-xl">
                 <section id="intro-content" class="tab-pane max-w-3xl mx-auto">
                     <h2 class="text-2xl font-semibold h2-cyan-blue mb-6 animate-on-scroll">Hello, Inova Health Team!</h2>
                     <p class="section-intro-text mb-6 animate-on-scroll">
-                        Welcome! I’m Frank Duenas, and I’m excited to share this interactive roadmap that brings my vision to life for how Inova Health can advance patient engagement and marketing intelligence through Adobe Experience Platform (AEP).
+                        I’m Frank Duenas, and I’m excited to share this interactive roadmap that illustrates my vision for how Inova Health can advance patient engagement and marketing intelligence through Adobe Experience Platform (AEP).
                     </p>
                     <div class="space-y-4 text-gray-700 leading-relaxed">
-                        <p class="animate-on-scroll">This living document reflects not only my understanding of Inova’s digital challenges, but also how I would apply AEP’s capabilities—including Real-Time Customer Data Platform (RT-CDP) and Customer Journey Analytics (CJA)—to help unify patient data, activate relevant journeys, and surface real-time insights across every touchpoint.</p>
+                        <p class="animate-on-scroll">This living document reflects my understanding of Inova’s digital challenges (with assumptions, of course), and my approach for how I would apply AEP’s capabilities, especially Customer Data Platform (CDP) and Customer Journey Analytics (CJA) to help unify patient data, activate relevant journeys, and surface real-time insights across every touchpoint, including offline.</p>
 
-                        <div class="my-8 text-center p-4">
-                            <h3 class="text-xl font-semibold text-[#0e296b] mb-4 animate-on-scroll">Driving Enhanced Patient Experiences with Comprehensive Expertise</h3>
+                        <div class="my- p-4">
                             <div class="venn-diagram-container animate-on-scroll">
-                                <img src="https://raw.githubusercontent.com/dc2vb/inova/refs/heads/main/venn.png?raw=true" alt="Illustration representing an enhanced and inclusive patient experience, achieved through strategic project management and technical expertise." class="w-full max-w-xl mx-auto border border-gray-200 rounded-md" onerror="this.onerror=null; this.src='https://placehold.co/600x350/D1F2EB/004B8D?text=Enhanced+Patient+Experience%0A(Inclusive+Care)';">
+                                <img src="https://raw.githubusercontent.com/dc2vb/inova/refs/heads/main/venn.png?raw=true" alt="Illustration representing an enhanced and inclusive patient experience, achieved through strategic project management and technical expertise." class="w-full max-w-xl mx-auto border border-gray-200" onerror="this.onerror=null; this.src='https://placehold.co/600x350/D1F2EB/004B8D?text=Enhanced+Patient+Experience%0A(Inclusive+Care)';">
                             </div>
-                            <p class="text-sm text-gray-500 mt-2 animate-on-scroll">Figure: This diagram visually represents how my project management, strategic vision, and technical expertise converge to drive AEP implementation, leading to enhanced patient experiences and marketing intelligence for Inova Health.</p>
                         </div>
 
-                        <p class="animate-on-scroll">Implementing AEP isn’t just about integrating technology—it’s about aligning people, process, and platform. My approach combines strategic roadmap development, agile project execution, and deep Adobe platform expertise to deliver measurable outcomes. I’ve led complex cross-functional teams, mapped business needs to scalable data strategies, and ensured enterprise solutions were grounded in both compliance and ROI.
-                        <p class="animate-on-scroll">This plan outlines how we can leverage Adobe Experience Platform to power Inova’s digital transformation—delivering smarter segmentation, omnichannel activation, and more empathetic experiences for every patient.</p>
+                        <p class="animate-on-scroll">My approach is more than just integrating tech. It combines agile project execution and deep Adobe platform expertise to deliver measurable outcomes. I’ve led complex cross-functional teams, mapped business needs to scalable data strategies, and ensured enterprise solutions were grounded in both compliance and ROI.</p>
+                        <p class="animate-on-scroll">This plan outlines how we can leverage Adobe Experience Platform to power Inova’s digital transformation to delivering smarter segmentation, omnichannel activation, and more empathetic experiences for every patient.</p>
                         <h3 class="text-xl font-semibold text-[#0e296b] mb-4 animate-on-scroll">Let’s dive in.</h3>
                             
                         </p>
@@ -253,235 +285,333 @@
                 </section>
 
                 <section id="vision-content" class="tab-pane hidden max-w-3xl mx-auto">
-                    <h2 class="text-2xl font-semibold h2-cyan-blue mb-6 animate-on-scroll">Our Vision for an Enhanced Patient Experience</h2>
+                    <h2 class="text-2xl font-semibold h2-cyan-blue mb-6 animate-on-scroll">Our Vision for a Connected Patient Intelligence Ecosystem</h2>
                     <p class="section-intro-text mb-6 animate-on-scroll">
-                        I'm incredibly excited to share my vision for how the Adobe Experience Platform (AEP) will revolutionize how Inova Health connects with our patients. This isn't just about technology; it's about building a truly unified, real-time understanding of every patient, allowing us to deliver personalized, empathetic, and incredibly effective experiences. We're talking about optimizing our marketing efforts and driving significant growth across all our services, all by putting the patient at the very heart of everything we do.
-                    </p>
+                            My initial vision is to build a unified, real-time patient intelligence hub that connects fragmented data across clinical, digital, and operational channels into a single, actionable view. Powered by CDP and CJA (and assuming, Adobe Analytics), this ecosystem will allow Inova to understand the full context of each patient’s journey—across devices, channels, and stages of care and engagement.</p>
+    
+                            <div class="my-8 text-center p-4">
+                            <img src="https://raw.githubusercontent.com/dc2vb/inova/refs/heads/main/aep-inova-v2.png" alt="Diagram showing AEP as a central hub for patient data" class="w-full max-w-xl mx-auto border border-gray-200 animate-on-scroll" onerror="this.onerror=null; this.src='https://placehold.co/600x350/F0F4F7/004B8D?text=AEP+Unified+Data+Hub';">                        </div>
+
+                    
                     <div class="space-y-4 text-gray-700 leading-relaxed">
-                        <p class="animate-on-scroll">My goal is to establish a powerful, real-time patient intelligence hub. This hub will empower us to deliver highly personalized, empathetic, and effective patient experiences, optimize our marketing investments, and drive measurable growth across all Inova Health service lines. We'll achieve this by leveraging AEP's incredible capabilities to create a single, holistic view of each patient, analyze their complex healthcare journeys, and activate personalized engagements at a scale we've never seen before. Imagine the possibilities when we truly understand and anticipate our patients' needs!</p>
+                        <p class="animate-on-scroll">My goal is to establish a powerful, real-time patient intelligence hub. This hub will empower us to deliver highly personalized, empathetic, and effective patient experiences, optimize marketing investments, and drive measurable growth across all Inova Health service lines. We'll leverage AEP to create a holistic view of each patient, analyze their complex healthcare journeys, and activate personalized engagements at scale.</p>
+
 
                         <div class="my-8 text-center p-4">
-                            <img src="https://raw.githubusercontent.com/dc2vb/inova/refs/heads/main/aep-inova-v2.png" alt="Diagram showing AEP as a central hub for patient data" class="w-full max-w-xl mx-auto border border-gray-200 rounded-md animate-on-scroll" onerror="this.onerror=null; this.src='https://placehold.co/600x350/F0F4F7/004B8D?text=AEP+Unified+Data+Hub';">
-                            <p class="text-sm text-gray-500 mt-2 animate-on-scroll">Figure 1: AEP as the central unified patient profile hub, integrating various data sources.</p>
-                        </div>
-
-                        <div class="my-8 text-center p-4">
-                            <img src="https://github.com/dc2vb/inova/blob/main/dashboard.png?raw=true" alt="Example of a Customer Journey Analytics dashboard" class="w-full max-w-xl mx-auto border border-gray-200 rounded-md animate-on-scroll" onerror="this.onerror=null; this.src='https://placehold.co/600x350/F0F4F7/004B8D?text=CJA+Dashboard+Example';">
-                            <p class="text-sm text-gray-500 mt-2 animate-on-scroll">Figure 2: An illustrative Customer Journey Analytics dashboard, showcasing how unified data can provide deep insights into patient interactions and pathways.</p>
-                        </div>
+                            <img src="https://github.com/dc2vb/inova/blob/main/dashboard.png?raw=true" alt="Example of a Customer Journey Analytics dashboard" class="w-full max-w-xl mx-auto border border-gray-200 animate-on-scroll" onerror="this.onerror=null; this.src='https://placehold.co/600x350/F0F4F7/004B8D?text=CJA+Dashboard+Example';">                        </div>
                     </div>
                 </section>
 
                 <section id="phases-content" class="tab-pane hidden">
                     <div class="max-w-3xl mx-auto">
-                        <h2 class="text-2xl font-semibold h2-cyan-blue mb-6 animate-on-scroll">Phased Implementation Plan (12-Week Accelerated)</h2>
+                        <h2 class="text-2xl font-semibold h2-cyan-blue mb-6 animate-on-scroll">Phased Implementation Plan (22-Week Phased)</h2>
                         <p class="section-intro-text mb-8 animate-on-scroll">
-                            This accelerated AEP implementation is structured into five condensed phases, designed for rapid foundational setup and pilot deployment within a 12-week timeframe. Each phase has specific objectives, key activities, and deliverables. Click on each phase title below to expand its details. Below is a visual timeline overview of these accelerated phases, including a dedicated "soft launch" period.
+                            This phased AEP implementation is structured into five condensed phases, designed for rapid foundational setup and pilot deployment within a 22-week timeframe. Each phase has specific objectives, key activities, and deliverables. Below is a visual timeline overview of these accelerated phases, including a dedicated "soft launch" period.
                         </p>
                     </div>
 
                     <div class="mb-10">
-                        <h3 class="text-xl font-semibold text-[#0e296b] mb-4 text-center animate-on-scroll">Project Timeline Overview (12-Week Accelerated)</h3>
-                        <div class="chart-container bg-gray-50 p-4 shadow-md rounded-lg animate-on-scroll">
+                        <h3 class="text-xl font-semibold text-[#0e296b] mb-4 text-center animate-on-scroll">Project Timeline Overview (22-Week Phased Implementation)</h3>
+                        <div class="chart-container bg-gray-50 p-4 shadow-xl">
                             <canvas id="timelineChart"></canvas>
                         </div>
                          <p class="text-sm text-center mt-2 text-gray-500 animate-on-scroll">This timeline represents an accelerated, foundational implementation focusing on a critical pilot use case.</p>
                     </div>
 
                     <div class="max-w-4xl mx-auto mb-8">
-                        <div class="flex flex-wrap justify-center gap-2 md:gap-4">
-                            <button data-phase="phase1" class="step-button active py-2 px-4 rounded-full text-sm font-semibold shadow-md">Phase 1: Discovery</button>
-                            <button data-phase="phase2" class="step-button py-2 px-4 rounded-full text-sm font-semibold shadow-md">Phase 2: Architecture</button>
-                            <button data-phase="phase3" class="step-button py-2 px-4 rounded-full text-sm font-semibold shadow-md">Phase 3: Implementation</button>
-                            <button data-phase="phase4" class="step-button py-2 px-4 rounded-full text-sm font-semibold shadow-md">Phase 4: Testing</button>
-                            <button data-phase="phase5" class="step-button py-2 px-4 rounded-full text-sm font-semibold shadow-md">Phase 5: Deployment</button>
-                            <button data-phase="phase6" class="step-button py-2 px-4 rounded-full text-sm font-semibold shadow-md">Ongoing Optimization</button>
+                        <div class="flex flex-wrap justify-center gap-2 md:gap-4 mb-8">
+                            <button data-phase="phase1" class="step-button active py-2 px-4 rounded-full text-xs font-semibold shadow-md focus:outline-none">Phase 1: Discovery</button>
+                            <button data-phase="phase2" class="step-button py-2 px-4 rounded-full text-xs font-semibold shadow-md focus:outline-none">Phase 2: Architecture</button>
+                            <button data-phase="phase3" class="step-button py-2 px-4 rounded-full text-xs font-semibold shadow-md focus:outline-none">Phase 3: Implementation</button>
+                            <button data-phase="phase4" class="step-button py-2 px-4 rounded-full text-xs font-semibold shadow-md focus:outline-none">Phase 4: Testing</button>
+                            <button data-phase="phase5" class="step-button py-2 px-4 rounded-full text-xs font-semibold shadow-md focus:outline-none">Phase 5: Deployment</button>
+                            <button data-phase="phase6" class="step-button py-2 px-4 rounded-full text-xs font-semibold shadow-md focus:outline-none">Ongoing Optimization</button>
                         </div>
-                    </div>
 
-                    <div id="phase-details-container" class="relative min-h-[600px] md:min-h-[700px] bg-white p-6 shadow-xl rounded-lg">
-                        <div id="phase1-card" class="phase-content-card p-6">
-                            <h3 class="text-xl font-semibold text-[#0e296b] mb-4 animate-on-scroll">Phase 1: Accelerated Discovery & Core Requirements (Weeks 1-3)</h3>
-                            <p class="font-medium text-gray-700 mb-4 animate-on-scroll"><strong>Objective:</strong> Rapidly define critical business objectives for a pilot AEP implementation, identify key stakeholders, and outline essential data sources within a compressed timeframe, with a strong focus on **CJA and CDP use cases**.</p>
+                        <div id="phase1-card" class="phase-content-card p-6 border-b border-gray-200 mb-6">
+                            <h3 class="text-xl font-semibold text-[#0e296b] mb-4">Phase 1: Discovery & Core Requirements (Weeks 1-3)</h3>
+                            <p class="font-medium text-gray-700 mb-4"><strong>Objective:</strong> Rapidly define critical business objectives for a pilot AEP implementation, identify key stakeholders, and outline essential data sources within a compressed timeframe.</p>
                             <div>
                                 <h4 class="font-semibold text-gray-700 mb-2">Key Activities:</h4>
                                 <ul class="list-disc list-inside space-y-2 pl-4 text-gray-600">
-                                    <li class="animated-list-item"><strong>1.1 Stakeholder & Business Requirements Gathering:</strong> Conduct in-depth interviews with key stakeholders across Marketing, IT, Patient Experience, Clinical Operations, Data Science, and Legal/Compliance. Map current patient journeys and identify critical pain points and opportunities for personalization that **CJA can illuminate and CDP can activate**. Define core marketing intelligence use cases (e.g., patient acquisition, retention, service line growth, personalized health content delivery, appointment scheduling optimization) that directly leverage **unified patient profiles in CDP and journey analysis in CJA**.</li>
-                                    <li class="italic text-[#91125F] animated-list-item">*My Contribution:* Leverage my client engagement and strategic relationship management skills to ensure all voices are heard and business needs are accurately translated into technical requirements for **CJA and CDP**.</li>
-                                    <li class="animated-list-item"><strong>1.2 Current State Assessment & Data Ecosystem Audit:</strong> Document existing data sources (CRM, EMR/EHR integrations, website analytics, marketing automation platforms, call center data, mobile app data, third-party data) that will feed into **AEP's Real-time Customer Profile (CDP)** and **Customer Journey Analytics**. Analyze current data quality, completeness, and accessibility, specifically identifying gaps for **comprehensive patient profiles and journey data**. Assess existing analytics tools and reporting capabilities to identify gaps **CJA and CDP** will fill.</li>
-                                    <li class="animated-list-item"><strong>1.3 Data Governance, Privacy & Compliance Framework:</strong> Collaborate closely with Legal and Compliance teams to establish a robust data governance framework, ensuring strict adherence to HIPAA, patient privacy regulations, and Inova's internal policies for **data flowing into AEP's CDP and CJA**. Define data ownership, access controls, and data retention policies within the AEP context, with particular attention to **patient data within CDP**.</li>
-                                    <li class="italic text-[#91125F] animated-list-item">*My Contribution:* My experience with complex web ecosystems and government organizations has instilled a deep understanding of stringent compliance requirements, which is paramount in healthcare, especially concerning **patient data in CDP**.</li>
-                                    <li class="animated-list-item"><strong>1.4 Success Metrics & ROI Definition:</strong> Establish clear, measurable Key Performance Indicators (KPIs) for the AEP implementation, tied directly to Inova's strategic goals (e.g., increase in patient lifetime value, reduction in cost per acquisition, improvement in patient satisfaction scores, enhanced campaign ROI) that can be **tracked and reported in CJA**. Develop a framework for ongoing measurement and reporting of AEP's impact, focusing on **CJA's analytical capabilities**.</li>
+                                    <li class="animated-list-item"><strong>1.1 High-Level Stakeholder Alignment:</strong> Conduct focused workshops to align on a single, high-impact pilot use case for AEP.</li>
+                                    <li class="animated-list-item"><strong>1.2 Core Data Source Identification:</strong> Identify the minimum viable data sources required for the pilot.</li>
+                                    <li class="animated-list-item"><strong>1.3 Critical KPI & Success Definition:</strong> Define 2-3 key metrics for the pilot's success.</li>
                                 </ul>
                             </div>
                             <div class="mt-4">
                                 <h4 class="font-semibold text-gray-700 mb-2">Deliverables:</h4>
-                                <ul class="list-disc list-inside space-y-1 pl-4 text-gray-600">
-                                    <li class="animated-list-item">Comprehensive Current State & Gap Analysis Report</li>
-                                    <li class="animated-list-item">Detailed Business Requirements & Prioritized Use Case Matrix (with **CJA/CDP focus**)</li>
-                                    <li class="animated-list-item">AEP Data Governance & Privacy Framework (initial draft), specifically for **CDP data**</li>
-                                    <li class="animated-list-item">Defined KPIs and ROI Measurement Plan (with **CJA reporting emphasis**)</li>
-                            </ul>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                                    <div class="flex items-center p-3 bg-blue-50 shadow-sm">
+                                        <i class="fas fa-file-alt text-blue-600 text-xl mr-3"></i>
+                                        <span class="text-sm font-medium text-gray-700">Pilot Use Case Definition & Scope Document</span>
+                                    </div>
+                                    <div class="flex items-center p-3 bg-green-50 shadow-sm">
+                                        <i class="fas fa-database text-green-600 text-xl mr-3"></i>
+                                        <span class="text-sm font-medium text-gray-700">Identified Core Data Sources for Pilot</span>
+                                    </div>
+                                    <div class="flex items-center p-3 bg-yellow-50 shadow-sm">
+                                        <i class="fas fa-chart-line text-yellow-600 text-xl mr-3"></i>
+                                        <span class="text-sm font-medium text-gray-700">Pilot KPIs & Success Metrics</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-8 text-right">
+                                <button class="bg-[#0e296b] text-white py-2 px-4 hover:bg-[#07153d] transition-colors duration-200 focus:outline-none flex items-center justify-end ml-auto next-phase-button" data-next-phase="phase2">
+                                    Continue to Phase 2 <i class="fas fa-arrow-right ml-2"></i>
+                                </button>
+                            </div>
                         </div>
-                    </div>
 
-                        <div id="phase2-card" class="phase-content-card hidden p-6">
-                            <h3 class="text-xl font-semibold text-[#0e296b] mb-4 animate-on-scroll">Phase 2: Foundational Architecture & Data Model (Weeks 4-6)</h3>
-                            <p class="font-medium text-gray-700 mb-4 animate-on-scroll"><strong>Objective:</strong> Design the optimal AEP architecture, data model, and integration strategy tailored to Inova's unique healthcare data landscape, specifically for **CJA and CDP functionality**.</p>
-                            <div>
-                                <h4 class="font-semibold text-gray-700 mb-2">Key Activities:</h4>
-                                <ul class="list-disc list-inside space-y-2 pl-4 text-gray-600">
-                                    <li class="animated-list-item"><strong>2.1 AEP Solution Architecture Design:</strong> Architect the end-to-end AEP solution, including data ingestion methods (streaming for real-time interactions for **CDP**, batch for historical data for **CJA**), data lake structure, and data flow orchestration. Define the role of Experience Platform Identity Service for robust patient identity resolution across disparate sources, crucial for **unified profiles in CDP and cross-channel journeys in CJA**.</li>
-                                    <li class="animated-list-item"><strong>2.2 Experience Data Model (XDM) Design:</strong> Develop comprehensive XDM schemas for critical healthcare entities (e.g., patient profiles, clinical encounters, marketing interactions, financial transactions, service line engagements) that are optimized for **Real-time Customer Profile and Customer Journey Analytics**. Ensure XDM design supports **CJA's analytical capabilities** for granular journey analysis and **CDP's real-time profile unification** for segmentation and activation.</li>
-                                    <li class="italic text-[#91125F] animated-list-item">*My Contribution:* My background in optimizing complex data structures for SEO and digital performance will be applied to ensure the data model is both comprehensive and efficient for **CJA analytics and CDP activation**.</li>
-                                    <li class="animated-list-item"><strong>2.3 Identity Resolution Strategy:</strong> Design a sophisticated identity resolution strategy to accurately unify patient identities across online and offline touchpoints, respecting privacy constraints, forming the backbone of **CDP's unified profile**. Define the hierarchy and rules for identity merging within AEP, directly impacting the accuracy of **CDP segments and CJA journey paths**.</li>
-                                    <li class="animated-list-item"><strong>2.4 CJA Workspace & Data View Design:</strong> Plan out **CJA workspaces**, defining data views, metrics, dimensions, and segments to support specific patient journey analyses identified in Phase 1. Design initial dashboards and reports within **CJA** for key stakeholders.</li>
-                                    <li class="animated-list-item"><strong>2.5 CDP Profile & Segment Design:</strong> Define the **unified patient profile within Real-time CDP**, including attributes, calculated insights, and consent management. Design dynamic audience segments based on patient behavior, demographics, and health needs for targeted activation via **CDP**.</li>
-                                    <li class="animated-list-item"><strong>2.6 Integration & Activation Strategy:</strong> Outline detailed integration plans with Inova's existing marketing automation, CRM, EMR, website, and mobile platforms for seamless data flow into **AEP's Data Lake and Real-time CDP**. Plan for activation destinations (e.g., email, SMS, display ads, call center systems, personalized website content) directly from **CDP segments**.</li>
-                                </ul>
-                            </div>
-                            <div class="mt-4">
-                                <h4 class="font-semibold text-gray-700 mb-2">Deliverables:</h4>
-                                <ul class="list-disc list-inside space-y-1 pl-4 text-gray-600">
-                                    <li class="animated-list-item">AEP Solution Architecture Document (with **CJA/CDP focus**)</li>
-                                    <li class="animated-list-item">Detailed XDM Data Model Schemas (optimized for **CJA/CDP**)</li>
-                                    <li class="animated-list-item">Identity Resolution Strategy & Rules Document (for **CDP unified profiles**)</li>
-                                    <li class="animated-list-item">**CJA Workspace & Data View Specifications**</li>
-                                    <li class="animated-list-item">**CDP Unified Profile & Segment Definitions**</li>
-                                    <li class="animated-list-item">Integration & Activation Plan (for **CDP activation**)</li>
-                                </ul>
-                            </div>
+                        <div id="phase2-card" class="phase-content-card hidden p-6 border-b border-gray-200 mb-6">
+                            <h3 class="text-xl font-semibold text-[#0e296b] mb-4">Phase 2: Architecture & Design (Weeks 4–8)</h3>
                             <div class="my-8 text-center p-4">
-                                <img src="https://raw.githubusercontent.com/dc2vb/inova/refs/heads/main/aep-inova-v2.png" alt="Diagram showing AEP as a central hub for patient data" class="w-full max-w-xl mx-auto border border-gray-200 rounded-md animate-on-scroll" onerror="this.onerror=null; this.src='https://placehold.co/600x350/F0F4F7/004B8D?text=AEP+CRM+Integration';">
+                                <img src="https://raw.githubusercontent.com/dc2vb/inova/refs/heads/main/aep-inova-v2.png" alt="Diagram showing AEP as a central hub for patient data" class="w-full max-w-xl mx-auto border border-gray-200 animate-on-scroll" onerror="this.onerror=null; this.src='https://placehold.co/600x350/F0F4F7/004B8D?text=AEP+CRM+Integration';">
                                 <p class="text-sm text-gray-500 mt-2 animated-list-item">Figure 3: Illustrative screenshot of AEP's capability to integrate with CRM systems for unified patient profiles.</p>
                             </div>
-                        </div>
-
-                        <div id="phase3-card" class="phase-content-card hidden p-6">
-                            <h3 class="text-xl font-semibold text-[#0e296b] mb-4 animate-on-scroll">Phase 3: Rapid Pilot Implementation & Data Ingestion (Weeks 7-9)</h3>
-                            <p class="font-medium text-gray-700 mb-4 animate-on-scroll"><strong>Objective:</strong> Quickly build and configure the AEP environment, ingest data into **CDP and CJA**, and set up core functionalities.</p>
+                            <p class="font-medium text-gray-700 mb-4"><strong>Objective:</strong> Design an extensible, privacy-resilient, and healthcare-compliant data architecture that supports identity resolution, real-time activation, and journey-level analysis.</p>
                             <div>
                                 <h4 class="font-semibold text-gray-700 mb-2">Key Activities:</h4>
                                 <ul class="list-disc list-inside space-y-2 pl-4 text-gray-600">
-                                    <li class="animated-list-item"><strong>3.1 AEP Environment Setup & Configuration:</strong> Provision and configure AEP instances, sandboxes, and necessary services for **CDP and CJA**.</li>
-                                    <li class="animated-list-item"><strong>3.2 Data Ingestion Development:</strong> Develop and implement data connectors and pipelines to ingest high-quality data from identified sources into the **AEP Data Lake and Real-time Customer Profile (CDP)**. Prioritize critical data sources first. Ensure data is correctly structured for **CJA's schema requirements**. Implement data transformation rules as needed for **CDP profile enrichment and CJA data views**.</li>
-                                    <li class="animated-list-item"><strong>3.3 Identity Graph Configuration & Tuning:</strong> Configure and continuously tune the identity graph to ensure accurate and comprehensive patient profile unification within **CDP**.</li>
-                                    <li class="animated-list-item"><strong>3.4 CJA & CDP Configuration:</strong> Build out **CJA data views, metrics, dimensions, and initial analytical workspaces** based on the designs from Phase 2. Configure **unified profiles within CDP**, create initial audience segments, and set up activation destinations within **CDP**.</li>
-                                    <li class="italic text-[#91125F] animated-list-item">*My Contribution:* Oversee the technical implementation, ensuring alignment with strategic goals and leveraging best practices for data integrity and performance specifically for **CJA and CDP**.</li>
-                                    <li class="animated-list-item"><strong>3.5 Pilot Use Case Implementation:</strong> Implement a high-impact, low-complexity pilot use case (e.g., personalizing website content for new patients, optimizing a specific service line campaign) that leverages **CDP segments for activation and CJA for journey analysis** to validate the AEP setup and demonstrate early value.</li>
+                                    <li class="animated-list-item"><strong>2.1 AEP Solution Architecture Design:</strong> Develop the end-to-end data flow model, including ingestion pathways for both batch and streaming sources. Define how behavioral, clinical, and engagement data will be structured and made available for segmentation, orchestration, and analytics. Establish the foundation for scalable patient profile creation and cross-channel visibility.</li>
+                                    <li class="animated-list-item"><strong>2.2 Experience Data Model (XDM) Design:</strong> Define healthcare-specific schemas that represent critical entities such as patients, encounters, service lines, digital behaviors, and communication preferences. Ensure data is normalized to support consistent attribution, journey tracking, and activation logic across all patient engagement touchpoints.</li>
+                                    <li class="animated-list-item"><strong>2.3 Identity Strategy & Resolution Rules:</strong> Design framework to unify patient records across known (e.g., CRM, patient portal logins) and unknown (e.g., anonymous site behavior) identifiers. Configure merging logic and identity priority rules to support accurate audience creation and personalization while preserving privacy and HIPAA compliance.</li>
+                                    <li class="animated-list-item"><strong>2.4 Journey Workspace & Reporting Design:</strong> Design intuitive, role-based reporting workspaces that provide stakeholders visibility into patient journey performance, conversion paths, and engagement trends. Define core metrics and dimensions that reflect both clinical and digital KPIs (e.g., appointment completions, repeat visit frequency, digital channel influence).</li>
+                                    <li class="animated-list-item"><strong>2.5 Audience Design & Activation Framework:</strong> Develop audience definitions and segmentation logic to support initial use cases—such as patient reactivation, new patient acquisition, or service-line-specific outreach. Establish workflows to push these audiences into activation platforms (e.g., email, web personalization, contact center), with clear governance rules for campaign orchestration.</li>
+                                    <li class="animated-list-item"><strong>2.6 Integration Blueprint:</strong> Create a detailed integration plan to connect AEP with key martech systems. Include specs for tagging, consent capture, and measurement enablement across digital assets.</li>
                                 </ul>
                             </div>
                             <div class="mt-4">
                                 <h4 class="font-semibold text-gray-700 mb-2">Deliverables:</h4>
-                                <ul class="list-disc list-inside space-y-1 pl-4 text-gray-600">
-                                    <li class="animated-list-item">Functional AEP Data Lake & **Real-time Customer Profile (CDP)**</li>
-                                    <li class="animated-list-item">Operational Data Ingestion Pipelines (feeding **CJA and CDP**)</li>
-                                    <li class="animated-list-item">Configured **CJA Workspaces & Reports**</li>
-                                    <li class="animated-list-item">Configured **CDP Unified Profiles & Segments**</li>
-                                    <li class="animated-list-item">Integrated Pilot Use Case (ready for testing, powered by **CDP and CJA**)</li>
-                                </ul>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                                    <div class="flex items-center p-3 bg-purple-50 shadow-sm">
+                                        <i class="fas fa-project-diagram text-purple-600 text-xl mr-3"></i>
+                                        <span class="text-sm font-medium text-gray-700">AEP Architecture Blueprint & Data Flow Diagrams</span>
+                                    </div>
+                                    <div class="flex items-center p-3 bg-pink-50 shadow-sm">
+                                        <i class="fas fa-sitemap text-pink-600 text-xl mr-3"></i>
+                                        <span class="text-sm font-medium text-gray-700">Experience Data Model (XDM) Schemas</span>
+                                    </div>
+                                    <div class="flex items-center p-3 bg-indigo-50 shadow-sm">
+                                        <i class="fas fa-id-card text-indigo-600 text-xl mr-3"></i>
+                                        <span class="text-sm font-medium text-gray-700">Identity Strategy Documentation</span>
+                                    </div>
+                                    <div class="flex items-center p-3 bg-red-50 shadow-sm">
+                                        <i class="fas fa-chart-bar text-red-600 text-xl mr-3"></i>
+                                        <span class="text-sm font-medium text-gray-700">Journey Reporting Workspace Specs</span>
+                                    </div>
+                                    <div class="flex items-center p-3 bg-teal-50 shadow-sm">
+                                        <i class="fas fa-users text-teal-600 text-xl mr-3"></i>
+                                        <span class="text-sm font-medium text-gray-700">Segmentation Framework & Use Case Mapping</span>
+                                    </div>
+                                    <div class="flex items-center p-3 bg-orange-50 shadow-sm">
+                                        <i class="fas fa-link text-orange-600 text-xl mr-3"></i>
+                                        <span class="text-sm font-medium text-gray-700">Martech Integration Plan</span>
+                                    </div>
+                                </div>
                             </div>
+                            <div class="mt-8 text-right">
+                                <button class="bg-[#0e296b] text-white py-2 px-4 hover:bg-[#07153d] transition-colors duration-200 focus:outline-none flex items-center justify-end ml-auto next-phase-button" data-next-phase="phase3">
+                                    Continue to Phase 3 <i class="fas fa-arrow-right ml-2"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div id="phase3-card" class="phase-content-card hidden p-6 border-b border-gray-200 mb-6">
+                            <h3 class="text-xl font-semibold text-[#0e296b] mb-4">Phase 3: Implementation & Data Ingestion (Weeks 9–14)</h3>
                             <div class="my-8 text-center p-4">
-                                <img src="https://raw.githubusercontent.com/dc2vb/inova/refs/heads/main/aa-inova.png" alt="Screenshot of Adobe Analytics data flowing into AEP" class="w-full max-w-xl mx-auto border border-gray-200 rounded-md animate-on-scroll" onerror="this.onerror=null; this.src='https://placehold.co/600x350/E0F2F7/004B8D?text=AEP+Analytics+Integration';">
+                                <img src="https://raw.githubusercontent.com/dc2vb/inova/refs/heads/main/aa-inova.png" alt="Screenshot of Adobe Analytics data flowing into AEP" class="w-full max-w-xl mx-auto border border-gray-200 animate-on-scroll" onerror="this.onerror=null; this.src='https://placehold.co/600x350/E0F2F7/004B8D?text=AEP+Analytics+Integration';">
                                 <p class="text-sm text-gray-500 mt-2 animated-list-item">Figure 4: Example visualization of Adobe Analytics data being ingested and utilized within AEP for comprehensive insights.</p>
                             </div>
-                        </div>
-
-                        <div id="phase4-card" class="phase-content-card hidden p-6">
-                            <h3 class="text-xl font-semibold text-[#0e296b] mb-4 animate-on-scroll">Phase 4: Pilot Testing & Optimization (Week 10)</h3>
-                            <p class="font-medium text-gray-700 mb-4 animate-on-scroll"><strong>Objective:</strong> Rigorously test the AEP implementation for data accuracy, system performance, and functional alignment with business requirements, with a strong focus on **CJA and CDP outputs**.</p>
+                            <p class="font-medium text-gray-700 mb-4"><strong>Objective:</strong> Deploy and configure Adobe Experience Platform to begin unifying patient data, establishing real-time profiles, and surfacing actionable insights—while validating data integrity, journey logic, and system interoperability.</p>
                             <div>
                                 <h4 class="font-semibold text-gray-700 mb-2">Key Activities:</h4>
                                 <ul class="list-disc list-inside space-y-2 pl-4 text-gray-600">
-                                    <li class="animated-list-item"><strong>4.1 Data Quality Assurance & Reconciliation:</strong> Conduct extensive data quality checks, validating data ingestion, transformation, and identity resolution for accuracy, completeness, and consistency within **CDP profiles and CJA datasets**. Reconcile data against source systems.</li>
-                                    <li class="animated-list-item"><strong>4.2 User Acceptance Testing (UAT):</strong> Engage business users (marketing, analytics, patient experience) in UAT sessions to validate **CJA reports, CDP segments**, and activated experiences against defined use cases. Gather feedback and iterate on configurations for **CJA and CDP**.</li>
-                                    <li class="animated-list-item"><strong>4.3 Performance & Scalability Testing:</strong> Assess AEP system performance under expected and peak load conditions, particularly for **real-time CDP profile updates, segment activation, and CJA query performance**.</li>
-                                    <li class="animated-list-item"><strong>4.4 Security & Compliance Audit:</strong> Conduct a thorough audit to verify that the AEP implementation adheres to all Inova's security policies and healthcare regulatory requirements (HIPAA), especially concerning **patient data within CDP**.</li>
-                                    <li class="animated-list-item"><strong>4.5 Initial Optimization:</strong> Based on testing feedback, optimize data flows, XDM schemas, **CJA configurations, and CDP segments** for improved performance and usability.</li>
+                                    <li class="animated-list-item"><strong>3.1 Environment Provisioning & Configuration:</strong> Stand up AEP instances (production and development sandboxes) with defined governance protocols, including naming conventions, workspace access, and role-based permissions. Enable core AEP services required for journey analysis, profile enrichment, and activation.</li>
+                                    <li class="animated-list-item"><strong>3.2 Data Ingestion Pipeline Development:</strong> Implement scalable connectors and ETL pipelines to ingest priority data sources—starting with CRM, web analytics, email engagement, and patient portal behavior. Normalize ingested data to match Experience Data Model (XDM) standards and ensure tagging aligns with downstream use cases.</li>
+                                    <li class="animated-list-item"><strong>3.3 Identity Graph Configuration:</strong> Enable and tune the identity graph to resolve known and pseudonymous identifiers, allowing for profile stitching across channels. Configure merging policies to respect consent, regulatory flags, and healthcare-specific ID hierarchies (e.g., MRNs, hashed emails, device IDs).</li>
+                                    <li class="animated-list-item"><strong>3.4 Profile Assembly & Real-Time Evaluation:</strong> Begin building unified patient profiles using streaming and batch data. Establish evaluation logic for real-time profile updates, and test initial activation scenarios (e.g., triggering a follow-up email after a form submission or site action). Monitor system latency and data freshness benchmarks.</li>
+                                    <li class="animated-list-item"><strong>3.5 Journey Analytics Workspace Buildout:</strong> Configure workspace dashboards to monitor early patient behavior signals, conversion trends, and digital engagement performance. Define filters and segments tied to initial pilot use cases (e.g., new patient appointments, repeat visitors, content engagement by service line).</li>
+                                    <li class="animated-list-item"><strong>3.6 Pilot Use Case Implementation:</strong> Activate a low-risk, high-value pilot such as personalized content delivery for new patients or remarketing to those who abandoned an appointment booking flow. Use this pilot to validate identity resolution, segmentation, activation, and reporting fidelity end to end.</li>
                                 </ul>
                             </div>
                             <div class="mt-4">
                                 <h4 class="font-semibold text-gray-700 mb-2">Deliverables:</h4>
-                                <ul class="list-disc list-inside space-y-1 pl-4 text-gray-600">
-                                    <li class="animated-list-item">Comprehensive Data Quality Report (for **CDP and CJA data**)</li>
-                                    <li class="animated-list-item">UAT Sign-off & Feedback Log (for **CJA reports and CDP segments**)</li>
-                                    <li class="animated-list-item">Performance Test Results & Optimization Recommendations</li>
-                                    <li class="animated-list-item">Security & Compliance Audit Report</li>
-                                    <li class="animated-list-item">Refined AEP Configuration (including **CJA/CDP settings**)</li>
-                                </ul>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                                    <div class="flex items-center p-3 bg-purple-50 shadow-sm">
+                                        <i class="fas fa-cloud text-purple-600 text-xl mr-3"></i>
+                                        <span class="text-sm font-medium text-gray-700">Configured AEP Environment (Prod + Dev)</span>
+                                    </div>
+                                    <div class="flex items-center p-3 bg-pink-50 shadow-sm">
+                                        <i class="fas fa-cogs text-pink-600 text-xl mr-3"></i>
+                                        <span class="text-sm font-medium text-gray-700">Data Ingestion Pipelines for Priority Sources</span>
+                                    </div>
+                                    <div class="flex items-center p-3 bg-indigo-50 shadow-sm">
+                                        <i class="fas fa-id-card text-indigo-600 text-xl mr-3"></i>
+                                        <span class="text-sm font-medium text-gray-700">Operational Identity Graph</span>
+                                    </div>
+                                    <div class="flex items-center p-3 bg-red-50 shadow-sm">
+                                        <i class="fas fa-user-circle text-red-600 text-xl mr-3"></i>
+                                        <span class="text-sm font-medium text-gray-700">Unified Patient Profiles with Evaluation Rules</span>
+                                    </div>
+                                    <div class="flex items-center p-3 bg-teal-50 shadow-sm">
+                                        <i class="fas fa-chart-pie text-teal-600 text-xl mr-3"></i>
+                                        <span class="text-sm font-medium text-gray-700">Initial Journey Analytics Dashboards</span>
+                                    </div>
+                                    <div class="flex items-center p-3 bg-orange-50 shadow-sm">
+                                        <i class="fas fa-rocket text-orange-600 text-xl mr-3"></i>
+                                        <span class="text-sm font-medium text-gray-700">Live Pilot Use Case with Activation + Reporting Validation</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-8 text-right">
+                                <button class="bg-[#0e296b] text-white py-2 px-4 hover:bg-[#07153d] transition-colors duration-200 focus:outline-none flex items-center justify-end ml-auto next-phase-button" data-next-phase="phase4">
+                                    Continue to Phase 4 <i class="fas fa-arrow-right ml-2"></i>
+                                </button>
                             </div>
                         </div>
 
-                        <div id="phase5-card" class="phase-content-card hidden p-6">
-                            <h3 class="text-xl font-semibold text-[#0e296b] mb-4 animate-on-scroll">Phase 5: Pilot Go-Live & Initial Enablement (Weeks 11-12)</h3>
-                            <p class="font-medium text-gray-700 mb-4 animate-on-scroll"><strong>Objective:</strong> Successfully launch the AEP pilot use case to a limited audience and provide essential training for initial adoption, ensuring effective use of **CJA and CDP**.</p>
+                        <div id="phase4-card" class="phase-content-card hidden p-6 border-b border-gray-200 mb-6">
+                            <h3 class="text-xl font-semibold text-[#0e296b] mb-4">Phase 4: Testing, Validation & Optimization (Weeks 15–18)</h3>
+                            <p class="font-medium text-gray-700 mb-4"><strong>Objective:</strong> Ensure the integrity, reliability, and performance of Adobe Experience Platform implementation—validating that data flows, profile assembly, activation logic, and reporting align with stakeholder expectations and regulatory standards.</p>
                             <div>
                                 <h4 class="font-semibold text-gray-700 mb-2">Key Activities:</h4>
                                 <ul class="list-disc list-inside space-y-2 pl-4 text-gray-600">
-                                    <li class="animated-list-item"><strong>5.1 Phased Rollout Strategy & Execution:</strong> Execute a carefully planned phased deployment, starting with the validated pilot use case and gradually expanding to additional use cases and user groups, leveraging **CDP's activation capabilities**.</li>
-                                    <li class="animated-list-item"><strong>5.2 Training & Documentation Program:</strong> Develop comprehensive, role-specific training materials (e.g., for marketing analysts using **CJA**, campaign managers activating **CDP segments**, IT support for AEP core services). Conduct hands-on training sessions for all relevant teams on how to effectively use AEP, **CJA, and CDP**. Create detailed user guides and operational documentation for **CJA workspaces and CDP activations**.</li>
-                                    <li class="italic text-[#91125F] animated-list-item">*My Contribution:* Leverage my experience in content governance and enablement to ensure clear, actionable resources for all users of **CJA and CDP**.</li>
-                                    <li class="animated-list-item"><strong>5.3 Operational Support Model:</strong> Define clear roles, responsibilities, and processes for ongoing AEP management, monitoring, troubleshooting, and maintenance, including specific protocols for **CJA data pipelines and CDP profile updates**. Establish a dedicated support team or integrate AEP support into existing IT operations.</li>
-                                    <li class="animated-list-item"><strong>5.4 Change Management & Communication:</strong> Develop and execute a change management plan to ensure smooth adoption across the organization, highlighting the benefits and new capabilities **CJA and CDP** bring. Communicate initial successes and future roadmap to build excitement and buy-in.</li>
-                                    <li class="animated-list-item"><strong>5.5 Go-Live Soft Launch:</strong> Execute a controlled soft launch of initial AEP-powered use cases to a limited audience, primarily driven by **CDP segments and measured by CJA**. Monitor performance, gather real-time feedback, and address any immediate issues. Prepare for broader rollout based on soft launch success.</li>
+                                    <li class="animated-list-item"><strong>4.1 Data Quality Assurance & Reconciliation:</strong> Conduct rigorous data validation across all ingested sources to confirm accuracy, completeness, and mapping to the Experience Data Model (XDM). Reconcile sample records from source systems (e.g., CRM, EHR, analytics) against unified profiles to identify merge errors, missing fields, or inconsistent formatting. Document data lineage for transparency.</li>
+                                    <li class="animated-list-item"><strong>4.2 Profile Resolution & Segment Accuracy Audits:</strong> Test identity stitching across devices, channels, and data sources to ensure profiles resolve correctly based on configured rules. Evaluate the precision of key audience segments (e.g., prospective patients, frequent service-line visitors) to confirm they align with business definitions and consent logic.</li>
+                                    <li class="animated-list-item"><strong>4.3 User Acceptance Testing (UAT):</strong> Facilitate role-based testing with marketing, analytics, and IT users across dashboards, segmentation workflows, and activation outputs. Capture feedback on usability, naming conventions, access levels, and data interpretation to fine-tune the platform before wider rollout.</li>
+                                    <li class="animated-list-item"><strong>4.4 Performance & Scalability Testing:</strong> Evaluate AEP’s responsiveness under simulated peak loads, including real-time data ingestion and segment evaluation. Measure latency benchmarks for data availability, activation triggers, and reporting refresh intervals. Ensure infrastructure can scale with anticipated volume increases across additional use cases.</li>
+                                    <li class="animated-list-item"><strong>4.5 Security, Privacy & Compliance Audit:</strong> Review all workflows involving patient data to verify compliance with HIPAA, Inova policies, and industry security standards. Confirm access control policies are functioning as expected and that consent preferences are respected in audience-building and activation scenarios.</li>
+                                    <li class="animated-list-item"><strong>4.6 Optimization & Refinement:</strong> Based on testing results and stakeholder input, refine identity merge rules, XDM schemas, reporting visualizations, and tagging logic. Resolve known issues before expansion and prepare documentation for post-go-live support and future enhancements.</li>
                                 </ul>
                             </div>
                             <div class="mt-4">
                                 <h4 class="font-semibold text-gray-700 mb-2">Deliverables:</h4>
-                                <ul class="list-disc list-inside space-y-1 pl-4 text-gray-600">
-                                    <li class="animated-list-item">AEP Go-Live Plan & Execution (with **CDP activation focus**)</li>
-                                    <li class="animated-list-item">Comprehensive Training Program & Materials (for **CJA/CDP users**)</li>
-                                    <li class="animated-list-item">Operational Support Model & Runbook (including **CJA/CDP specific support**)</li>
-                                    <li class="animated-list-item">Internal Communication Plan</li>
-                                    <li class="animated-list-item">Soft Launch Performance Report (leveraging **CJA insights**)</li>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                                    <div class="flex items-center p-3 bg-blue-50 shadow-sm">
+                                        <i class="fas fa-clipboard-check text-blue-600 text-xl mr-3"></i>
+                                        <span class="text-sm font-medium text-gray-700">Data Quality Validation & Reconciliation Report</span>
+                                    </div>
+                                    <div class="flex items-center p-3 bg-green-50 shadow-sm">
+                                        <i class="fas fa-user-check text-green-600 text-xl mr-3"></i>
+                                        <span class="text-sm font-medium text-gray-700">Segment & Profile Accuracy Audit</span>
+                                    </div>
+                                    <div class="flex items-center p-3 bg-yellow-50 shadow-sm">
+                                        <i class="fas fa-vial text-yellow-600 text-xl mr-3"></i>
+                                        <span class="text-sm font-medium text-gray-700">User Acceptance Testing (UAT) Log & Resolution Plan</span>
+                                    </div>
+                                    <div class="flex items-center p-3 bg-purple-50 shadow-sm">
+                                        <i class="fas fa-tachometer-alt text-purple-600 text-xl mr-3"></i>
+                                        <span class="text-sm font-medium text-gray-700">Platform Performance Benchmark Report</span>
+                                    </div>
+                                    <div class="flex items-center p-3 bg-pink-50 shadow-sm">
+                                        <i class="fas fa-shield-alt text-pink-600 text-xl mr-3"></i>
+                                        <span class="text-sm font-medium text-gray-700">Security & Privacy Compliance Checklist</span>
+                                    </div>
+                                    <div class="flex items-center p-3 bg-indigo-50 shadow-sm">
+                                        <i class="fas fa-cog text-indigo-600 text-xl mr-3"></i>
+                                        <span class="text-sm font-medium text-gray-700">Final Optimized Configuration (Pre-Go-Live)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-8 text-right">
+                                <button class="bg-[#0e296b] text-white py-2 px-4 hover:bg-[#07153d] transition-colors duration-200 focus:outline-none flex items-center justify-end ml-auto next-phase-button" data-next-phase="phase5">
+                                    Continue to Phase 5 <i class="fas fa-arrow-right ml-2"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div id="phase5-card" class="phase-content-card hidden p-6 border-b border-gray-200 mb-6">
+                            <h3 class="text-xl font-semibold text-[#0e296b] mb-4">Phase 5: Deployment & Enablement (Weeks 19–22)</h3>
+                            <p class="font-medium text-gray-700 mb-4"><strong>Objective:</strong> Transition Adobe Experience Platform from pilot to production by rolling out validated use cases, enabling cross-functional teams, and establishing operational support systems to ensure sustained value and platform adoption across Inova Health.</p>
+                            <div>
+                                <h4 class="font-semibold text-gray-700 mb-2">Key Activities:</h4>
+                                <ul class="list-disc list-inside space-y-2 pl-4 text-gray-600">
+                                    <li class="animated-list-item"><strong>5.1 Phased Rollout Execution:</strong> Initiate deployment with the validated pilot use case, ensuring activation and reporting components remain stable in a live environment. Gradually scale to additional audiences, service lines, and touchpoints, prioritizing low-risk, high-impact opportunities (e.g., personalized follow-up messaging, digital remarketing, or high-volume appointment flows).</li>
+                                    <li class="animated-list-item"><strong>5.2 Stakeholder Training & Documentation:</strong> Deliver structured enablement sessions tailored to platform roles—marketers, analysts, campaign managers, and IT partners. Include hands-on walkthroughs for audience creation, reporting interpretation, data layer hygiene, and activation workflows. Provide quick-reference guides, governance playbooks, and dashboard overviews to support adoption and self-service.</li>
+                                    <li class="animated-list-item"><strong>5.3 Operational Ownership & Support Model:</strong> Define platform ownership responsibilities across key functions (e.g., marketing operations, analytics, IT, data governance). Establish triage processes for platform bugs, data quality issues, and use case requests. Develop a runbook and support framework that aligns with Inova’s enterprise change management and digital operations practices.</li>
+                                    <li class="animated-list-item"><strong>5.4 Change Management & Adoption Planning:</strong> Partner with internal champions to build awareness around the platform’s impact and ongoing roadmap. Launch internal communications to showcase early wins and benefits realized (e.g., campaign efficiency gains, engagement lift). Address cultural or operational resistance with proactive training and proof-of-value storytelling.</li>
                                 </ul>
+                            </div>
+                            <div class="mt-4">
+                                <h4 class="font-semibold text-gray-700 mb-2">Deliverables:</h4>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                                    <div class="flex items-center p-3 bg-red-50 shadow-sm">
+                                        <i class="fas fa-map-signs text-red-600 text-xl mr-3"></i>
+                                        <span class="text-sm font-medium text-gray-700">Phased Use Case Deployment Plan</span>
+                                    </div>
+                                    <div class="flex items-center p-3 bg-teal-50 shadow-sm">
+                                        <i class="fas fa-chalkboard-teacher text-teal-600 text-xl mr-3"></i>
+                                        <span class="text-sm font-medium text-gray-700">Role-Specific Training Sessions & Enablement Materials</span>
+                                    </div>
+                                    <div class="flex items-center p-3 bg-orange-50 shadow-sm">
+                                        <i class="fas fa-handshake text-orange-600 text-xl mr-3"></i>
+                                        <span class="text-sm font-medium text-gray-700">Platform Support Model & Ownership Framework</span>
+                                    </div>
+                                    <div class="flex items-center p-3 bg-blue-50 shadow-sm">
+                                        <i class="fas fa-book text-blue-600 text-xl mr-3"></i>
+                                        <span class="text-sm font-medium text-gray-700">Governance Runbook & Issue Resolution Process</span>
+                                    </div>
+                                    <div class="flex items-center p-3 bg-green-50 shadow-sm">
+                                        <i class="fas fa-users-cog text-green-600 text-xl mr-3"></i>
+                                        <span class="text-sm font-medium text-gray-700">Change Management & Adoption Strategy</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-8 text-right">
+                                <button class="bg-[#0e296b] text-white py-2 px-4 hover:bg-[#07153d] transition-colors duration-200 focus:outline-none flex items-center justify-end ml-auto next-phase-button" data-next-phase="phase6">
+                                    Continue to Ongoing Optimization <i class="fas fa-arrow-right ml-2"></i>
+                                </button>
                             </div>
                         </div>
 
                         <div id="phase6-card" class="phase-content-card hidden p-6">
-                            <h3 class="text-xl font-semibold text-[#0e296b] mb-4 animate-on-scroll">Continuous Optimization & Innovation (Ongoing)</h3>
-                            <p class="font-medium text-gray-700 mb-4 animate-on-scroll"><strong>Objective:</strong> Maximize the long-term value of AEP by continuously optimizing its use, expanding capabilities, and fostering a culture of data-driven innovation beyond the initial 12-week accelerated launch, with a strong emphasis on **CJA and CDP**.</p>
+                            <h3 class="text-xl font-semibold text-[#0e296b] mb-4">Continuous Optimization & Innovation (Ongoing)</h3>
+                            <p class="font-medium text-gray-700 mb-4"><strong>Objective:</strong> Maximize long-term value from Adobe Experience Platform by establishing a framework for continuous optimization, advanced use case expansion, and innovation across Inova’s marketing intelligence and patient engagement efforts.</p>
                             <div>
                                 <h4 class="font-semibold text-gray-700 mb-2">Key Activities:</h4>
                                 <ul class="list-disc list-inside space-y-2 pl-4 text-gray-600">
-                                    <li class="animated-list-item"><strong>6.1 Performance Monitoring & Reporting:</strong> Continuously monitor AEP performance, data quality, and the effectiveness of implemented use cases against defined KPIs, primarily through **CJA reporting**. Provide regular performance reports to leadership and stakeholders.</li>
-                                    <li class="animated-list-item"><strong>6.2 New Use Case Development & Expansion:</strong> Work with business units to identify and implement additional marketing intelligence and personalization use cases, leveraging the full power of **CJA for deeper insights and CDP for advanced segmentation and orchestration**. Explore cross-channel journey orchestration and real-time decisioning capabilities within **CDP**.</li>
-                                    <li class="animated-list-item"><strong>6.3 Feature Adoption & Platform Evolution:</strong> Stay abreast of new AEP features, updates, and industry best practices. Evaluate their relevance for Inova and plan for strategic adoption, particularly new functionalities within **CJA and CDP**.</li>
-                                    <li class="animated-list-item"><strong>6.4 Advanced Analytics & Machine Learning Integration:</strong> Explore and integrate advanced analytics tools and machine learning models with AEP for predictive insights, propensity modeling, and next-best-action recommendations, enhancing **CDP's intelligence and CJA's predictive capabilities**.</li>
-                                    <li class="animated-list-item"><strong>6.5 Regular Stakeholder Reviews & Feedback Loop:</strong> Conduct regular reviews with key stakeholders to demonstrate AEP's ongoing value, gather evolving business needs, and refine the AEP roadmap, with a focus on **CJA insights and CDP-driven outcomes**. Foster a continuous feedback loop for iterative improvements.</li>
+                                    <li class="animated-list-item"><strong>6.1 Performance Monitoring & Measurement:</strong> Establish ongoing reporting cadences and executive dashboards to monitor core KPIs tied to AEP use cases—e.g., campaign ROI, engagement lift, audience reach, and appointment conversion trends. Continuously evaluate platform performance (data freshness, identity resolution rates, activation reliability) to ensure scalability and efficiency.</li>
+                                    <li class="animated-list-item"><strong>6.2 New Use Case Development & Expansion:</strong> Identify new cross-functional use cases that can leverage AEP—such as service-line-specific outreach, care journey reminders, or personalization for long-term condition management. Collaborate with business owners to prioritize and roadmap new journeys, segments, and channels aligned to enterprise goals.</li>
+                                    <li class="animated-list-item"><strong>6.3 Feature Adoption & Platform Maturity:</strong> Track releases and capabilities added to Adobe’s product roadmap and assess relevance to Inova’s objectives. Pilot new features such as real-time decisioning, propensity scoring, or more granular consent management. Maintain alignment with Adobe’s platform evolution to unlock additional value over time.</li>
+                                    <li class="animated-list-item"><strong>6.4 Advanced Analytics & Predictive Modeling:</strong> Integrate advanced analytics capabilities (e.g., machine learning models, predictive segmentation, or health risk indicators) into the AEP framework. Collaborate with data science teams to enrich profiles with calculated insights that support proactive, personalized outreach strategies.</li>
+                                    <li class="animated-list-item"><strong>6.5 Governance Reviews & Feedback Loops:</strong> Host recurring stakeholder reviews to report performance, gather feedback, and assess alignment with changing business priorities. Maintain a backlog of enhancement requests, data needs, and use case ideas. Continuously improve schema, identity rules, and audience logic based on real-world usage and evolving regulations.</li>
                                 </ul>
                             </div>
-                            <p class="mt-4 text-sm text-gray-500 animated-list-item">This phase represents the continuous, iterative effort to expand AEP's capabilities and value within Inova Health, building upon the successful 12-week foundational launch.</p>
-                        </div>
+                            </div>
                     </div>
                 </section>
 
-                <section id="value-content" class="tab-pane hidden py-12 max-w-3xl mx-auto animate-on-scroll">
-                    <h2 class="text-2xl font-semibold h2-cyan-blue mb-6">My Value Proposition as Director, Marketing Intelligence</h2>
+                <section id="value-content" class="tab-pane hidden pt-8 pb-12 max-w-3xl mx-auto">
+                    <h2 class="text-2xl font-semibold h2-cyan-blue mb-6">My Value Proposition</h2>
                     <p class="section-intro-text mb-6">
-                        This section articulates the unique blend of experience, skills, and strategic thinking I bring to the Director of Marketing Intelligence role. It highlights how my background in leading complex digital initiatives, fostering cross-functional collaboration, and driving measurable results positions me to successfully lead Inova Health's AEP transformation.
+                        I bring over 15 years of experience leading enterprise digital growth across healthcare, government, and global brands. I blend strategic planning, hands-on Adobe platform expertise, and a track record of guiding teams through meaningful digital transformation.
                     </p>
                     <div class="space-y-4 text-gray-700 leading-relaxed">
-                        <p class="animate-on-scroll">My 15+ years of experience leading enterprise SEO programs, managing high-impact digital accounts, and driving growth for global brands and government organizations position me uniquely for this role. I bring:</p>
                         <ul class="list-disc list-inside space-y-3 pl-5">
-                            <li class="animated-list-item"><strong>Strategic Acumen & Execution:</strong> I don't just understand the technical nuances of platforms like AEP, **CJA, and CDP**; I understand how to translate them into clear strategic objectives and measurable business outcomes. My experience in influencing an $830M marketing pipeline and achieving a 78% increase in completed applications demonstrates my ability to connect digital initiatives to significant organizational impact.</li>
-                            <li class="animated-list-item"><strong>Cross-Functional Leadership:</strong> Successfully implementing AEP requires seamless collaboration across Marketing, IT, Patient Experience, and Legal. My track record of partnering closely with diverse teams to align taxonomy, optimize structures, and govern content publishing will be invaluable in fostering the necessary cross-departmental synergy required for **effective CJA and CDP deployment**.</li>
-                            <li class="animated-list-item"><strong>Data-Driven Optimization & ROI Focus:</strong> My expertise in leveraging data to grow visibility, engagement, and conversion aligns perfectly with the core purpose of **CJA (for insights) and CDP (for activation)**. I am committed to establishing robust measurement frameworks and continuously optimizing the platform's use to ensure maximum ROI for Inova's marketing investments.</li>
-                            <li class="animated-list-item"><strong>Complex Ecosystem Navigation:</strong> My background managing strategic relationships and digital initiatives within complex environments (e.g., HHS, USDA, Fortune 500 B2B brands) has prepared me for the intricacies of a large healthcare system like Inova. I am adept at aligning content, UX, and performance goals with overarching business outcomes, especially when integrating data for **AEP's CDP and CJA**.</li>
-                            <li class="animated-list-item"><strong>Patient-Centric Approach:</strong> Ultimately, the goal is to enhance the patient experience. My focus will always be on how **AEP, through CJA's insights and CDP's personalization capabilities**, can empower Inova to deliver more personalized, relevant, and supportive interactions throughout the patient journey, driving both satisfaction and health outcomes.</li>
+                            <li class="animated-list-item"><strong>Strategic Action Across Channels:</strong> I know how to turn sophisticated MarTech platforms into real outcomes, including driving $830m in marketing-influenced pipeline for ICF.com and increasing organic engagement for HIV.gov by 11%.</li>
+                            <li class="animated-list-item"><strong>Agile Leadership Across Teams & Tools:</strong> I’ve orchestrated collaboration across Marketing, IT, Operations, HR, and Legal—aligning content, UX, and data strategy across complex ecosystems to meet business goals.</li>
+                            <li class="animated-list-item"><strong>Data-Driven, ROI-Focused Optimization:</strong> I’ve built scalable measurement frameworks that ensure platforms like Adobe Experience Platform don’t just function—they evolve, improve, and deliver measurable return.</li>
+                            <li class="animated-list-item"><strong>I have a DEEP network of MarTech Partners:</strong> My Rolodex (okay, it's an iPhone) of proven, agency partners across Adobe and the broader MarTech ecosystem who are ready to move fast, flex to budget, and get things done.</li>
                         </ul>
-                        <p class="mt-4 font-semibold animate-on-scroll">I am confident that my blend of strategic vision, technical understanding, and proven leadership in complex digital environments makes me an ideal candidate to lead Inova Health's Marketing Intelligence transformation with AEP.</p>
                     </div>
                 </section>
 
-                <section id="conclusion-content" class="tab-pane hidden py-12 max-w-3xl mx-auto animate-on-scroll">
+                <section id="conclusion-content" class="tab-pane hidden pt-8 pb-12 max-w-3xl mx-auto">
                     <h2 class="text-2xl font-semibold h2-cyan-blue mb-6">Bringing Our Vision to Life: A Call to Action</h2>
                     <p class="section-intro-text mb-6">
                         Thank you for taking the time to explore this interactive plan. I truly believe that with the right strategic approach and a dedicated team, we can unlock the full potential of Adobe Experience Platform to create unparalleled patient experiences and drive significant value for Inova Health.
                     </p>
                     <div class="space-y-4 text-gray-700 leading-relaxed">
                         <p class="animate-on-scroll">This document is just the beginning of a conversation. I'm eager to discuss these ideas further, answer any questions you might have, and delve into how my skills and passion can directly contribute to your team's success. I'm excited about the opportunity to join Inova Health and help shape the future of patient engagement and marketing intelligence. Let's connect and make this vision a reality!</p>
-                        <p class="mt-4 font-semibold animate-on-scroll">I look forward to hearing from you soon!</p>
+                        <p class="mt-6 text-sm text-gray-700 flex animate-on-scroll">
+                        <h3 class="text-xl font-semibold text-[#0e296b] mb-4 animate-on-scroll">Thank you!<br>Frank Duenas</h3>
+
+                            <i class="fas fa-phone-alt text-[#0e296b] mr-2"></i>571.294.6634
+                        </p>
+                        <p class="mt-2 text-sm text-gray-700 flex animate-on-scroll">
+                            <i class="fas fa-envelope text-[#0e296b] mr-2"></i> frankgduenas@gmail.com
+                        </p>
                     </div>
                 </section>
             </div>
@@ -505,6 +635,7 @@
             const tabPanes = document.querySelectorAll('.tab-pane');
             const stepButtons = document.querySelectorAll('.step-button');
             const phaseContentCards = document.querySelectorAll('.phase-content-card');
+            const nextPhaseButtons = document.querySelectorAll('.next-phase-button');
 
             const passwordOverlay = document.getElementById('password-overlay');
             const passwordInput = document.getElementById('password-input');
@@ -517,7 +648,7 @@
             const headerSubtitle = document.getElementById('header-subtitle');
             const passwordOverlayInnerDiv = passwordOverlay.querySelector('div');
 
-            let timelineChartInstance = null; // Variable to hold the Chart.js instance
+            let timelineChartInstance = null;
 
             // Initial animation for the password overlay
             passwordOverlayInnerDiv.classList.add('is-loaded');
@@ -608,8 +739,11 @@
                     headerTitle.classList.add('is-loaded');
                     headerSubtitle.classList.add('is-loaded');
                 } else {
-                    passwordError.classList.remove('hidden');
-                    passwordInput.value = '';
+                    // Show error message
+                    if (passwordError) {
+                        passwordError.classList.remove('hidden');
+                    }
+                    passwordInput.value = ''; // Clear password input
                 }
             }
 
@@ -685,6 +819,23 @@
                 });
             });
 
+            // New: Add event listeners for the "Continue to next section" buttons
+            nextPhaseButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const nextPhaseId = button.dataset.nextPhase;
+                    if (nextPhaseId) {
+                        showPhaseContent(nextPhaseId);
+                        // Also update the step button for the next phase
+                        const nextStepButton = document.querySelector(`.step-button[data-phase="${nextPhaseId}"]`);
+                        if (nextStepButton) {
+                            stepButtons.forEach(btn => btn.classList.remove('active'));
+                            nextStepButton.classList.add('active');
+                        }
+                    }
+                });
+            });
+
+
             function showPhaseContent(phaseId) {
                 stepButtons.forEach(button => button.classList.remove('active'));
 
@@ -736,10 +887,10 @@
                             label: 'Phase Duration (Weeks)',
                             data: [
                                 { x: [0, 3], y: 'Phase 1: Accelerated Discovery' }, // Weeks 1-3
-                                { x: [3, 6], y: 'Phase 2: Foundational Architecture' }, // Weeks 4-6
-                                { x: [6, 9], y: 'Phase 3: Rapid Pilot Implementation' }, // Weeks 7-9
-                                { x: [9, 10], y: 'Phase 4: Pilot Testing & Opt.' }, // Week 10
-                                { x: [10, 12], y: 'Phase 5: Pilot Go-Live & Enablement' } // Weeks 11-12
+                                { x: [3, 8], y: 'Phase 2: Foundational Architecture' }, // Weeks 4-8
+                                { x: [8, 14], y: 'Phase 3: Rapid Pilot Implementation' }, // Weeks 9-14
+                                { x: [14, 18], y: 'Phase 4: Pilot Testing & Opt.' }, // Weeks 15-18
+                                { x: [18, 22], y: 'Phase 5: Pilot Go-Live & Enablement' } // Weeks 19-22
                             ],
                             backgroundColor: [
                                 brightBlue,
@@ -762,7 +913,7 @@
                         },
                         {
                             label: 'Soft Launch Period',
-                            data: [{ x: [11.5, 12], y: 'Go-Live Soft Launch' }], // Week 12 (overlaps with Phase 5)
+                            data: [{ x: [21.5, 22], y: 'Go-Live Soft Launch' }], // Week 22 (overlaps with Phase 5)
                             backgroundColor: greenColor, /* Green */
                             borderColor: greenColor,
                             borderWidth: 1,
@@ -788,7 +939,7 @@
                                         color: '#374151'
                                     },
                                     min: 0,
-                                    max: 12.5, // Updated max to 12.5 for 12 weeks
+                                    max: 22.5, // Updated max to 22.5 for 22 weeks
                                     grid: {
                                         color: '#d1d5db'
                                     },
@@ -846,3 +997,4 @@
     </script>
 </body>
 </html>
+

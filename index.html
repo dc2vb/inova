@@ -312,7 +312,7 @@
                                 </ul>
                             </div>
                             <div class="my-8 text-center p-4">
-                                <img src="https://raw.githubusercontent.com/dc2vb/inova/refs/heads/main/aep-inova-v2.png" alt="Screenshot of AEP integrating with a CRM system" class="w-full max-w-xl mx-auto border border-gray-200 rounded-md animate-on-scroll" onerror="this.onerror=null; this.src='https://placehold.co/600x350/F0F4F7/004B8D?text=AEP+CRM+Integration';">
+                                <img src="https://raw.githubusercontent.com/dc2vb/inova/refs/heads/main/aep-inova-v2.png" alt="Diagram showing AEP as a central hub for patient data" class="w-full max-w-xl mx-auto border border-gray-200 rounded-md animate-on-scroll" onerror="this.onerror=null; this.src='https://placehold.co/600x350/F0F4F7/004B8D?text=AEP+CRM+Integration';">
                                 <p class="text-sm text-gray-500 mt-2 animated-list-item">Figure 2: Illustrative screenshot of AEP's capability to integrate with CRM systems for unified patient profiles.</p>
                             </div>
                         </div>
@@ -471,18 +471,92 @@
             const headerSubtitle = document.getElementById('header-subtitle');
             const passwordOverlayInnerDiv = passwordOverlay.querySelector('div');
 
-            // Variable to hold the Chart.js instance
-            let timelineChartInstance = null;
+            let timelineChartInstance = null; // Variable to hold the Chart.js instance
 
             // Initial animation for the password overlay
             passwordOverlayInnerDiv.classList.add('is-loaded');
+
+            // Scroll animation logic
+            const animateOnScrollElements = document.querySelectorAll('.animate-on-scroll');
+            const animatedListItems = document.querySelectorAll('.animated-list-item');
+            const vennDiagramContainer = document.querySelector('.venn-diagram-container');
+            let chartInitialized = false;
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        // Specific logic for chart animation
+                        if (entry.target.id === 'timelineChart' && !chartInitialized) { // Check for canvas element directly
+                            initializeChart();
+                            chartInitialized = true;
+                        }
+                        // Specific logic for list items
+                        if (entry.target.id.includes('-card')) {
+                            const listItems = entry.target.querySelectorAll('.animated-list-item');
+                            listItems.forEach((item, index) => {
+                                item.style.transitionDelay = `${index * 0.1}s`;
+                                item.classList.add('is-visible');
+                            });
+                        }
+                        // Specific logic for Venn diagram
+                        if (entry.target.contains(vennDiagramContainer)) {
+                            vennDiagramContainer.classList.add('is-visible');
+                        }
+                        // Stop observing once element is visible
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            function setupScrollAnimations() {
+                // Re-initialize observer for all animate-on-scroll elements
+                animateOnScrollElements.forEach(element => {
+                    element.classList.remove('is-visible'); // Reset visibility state
+                    observer.observe(element);
+                });
+                // Observe the Venn diagram container directly if it's not part of a general animate-on-scroll element
+                if (vennDiagramContainer) {
+                    vennDiagramContainer.classList.remove('is-visible'); // Reset visibility state
+                    observer.observe(vennDiagramContainer);
+                }
+                // Also reset and re-observe animated list items if they are not already handled by a parent section
+                animatedListItems.forEach(item => {
+                    item.classList.remove('is-visible');
+                    observer.observe(item);
+                });
+            }
+
+            function resetAndObserveAnimations(container) {
+                // Remove 'is-visible' from all animated elements within the container
+                container.querySelectorAll('.animate-on-scroll, .animated-list-item, .venn-diagram-container').forEach(el => {
+                    el.classList.remove('is-visible');
+                });
+
+                // Re-observe them
+                container.querySelectorAll('.animate-on-scroll, .animated-list-item, .venn-diagram-container').forEach(el => {
+                    observer.observe(el);
+                });
+            }
+
 
             function checkPassword() {
                 if (passwordInput.value === correctPassword) {
                     passwordOverlay.classList.add('hidden');
                     mainContent.classList.remove('hidden');
-                    switchMainTab('intro'); // Activate the intro tab on successful login
-                    setupScrollAnimations(); // Setup scroll animations after content is visible
+                    // Immediately show the intro tab without transition on initial load
+                    const introPane = document.getElementById('intro-content');
+                    if (introPane) {
+                        introPane.classList.remove('hidden');
+                        introPane.classList.add('active-tab-content');
+                    }
+                    setupScrollAnimations(); // Setup scroll animations for the initially visible content
 
                     // Animate header text after successful login
                     headerTitle.classList.add('is-loaded');
@@ -503,49 +577,13 @@
 
             function switchMainTab(targetId) {
                 const currentActivePane = document.querySelector('.tab-pane.active-tab-content');
-                if (currentActivePane) {
-                    currentActivePane.classList.remove('active-tab-content');
-                    currentActivePane.style.opacity = 0; // Start fade out
-                    setTimeout(() => {
-                        currentActivePane.classList.add('hidden'); // Hide after fade out
-                        showNewTab(targetId);
-                    }, 500); // Match CSS transition duration
-                } else {
-                    showNewTab(targetId);
+                const targetPane = document.getElementById(targetId + '-content');
+
+                if (currentActivePane === targetPane) {
+                    return; // Already on this tab, do nothing
                 }
-            }
 
-            function showNewTab(targetId) {
-                tabPanes.forEach(pane => {
-                    if (pane.id === targetId + '-content') {
-                        pane.classList.remove('hidden');
-                        // Force reflow to ensure transition
-                        void pane.offsetWidth;
-                        pane.classList.add('active-tab-content'); // Trigger fade in
-
-                        // Re-initialize scroll animations for the newly visible tab content
-                        resetAndObserveAnimations(pane);
-
-                        if (targetId === 'phases') {
-                            const phase1Card = document.getElementById('phase1-card');
-                            if (phase1Card) {
-                                phase1Card.classList.remove('hidden');
-                                showPhaseContent('phase1'); // Show the first phase content and activate its button
-                            }
-                            initializeChart(); // Initialize chart when phases tab is shown
-                        } else {
-                            // Hide all phase content cards when not on the phases tab
-                            phaseContentCards.forEach(card => {
-                                card.classList.remove('active');
-                                card.classList.add('hidden');
-                            });
-                            stepButtons.forEach(button => button.classList.remove('active'));
-                        }
-                    } else {
-                        pane.classList.add('hidden');
-                        pane.classList.remove('active-tab-content');
-                    }
-                });
+                // Update main tab active state immediately
                 mainTabs.forEach(tab => {
                     if (tab.dataset.tab === targetId) {
                         tab.classList.add('tab-active');
@@ -555,8 +593,75 @@
                         tab.classList.add('main-tab');
                     }
                 });
+
+                let transitionEnded = false; // Flag to prevent double execution
+
+                // Function to activate the new pane
+                const activateNewPane = () => {
+                    if (transitionEnded) return; // Prevent double execution
+                    transitionEnded = true;
+
+                    // Ensure all other panes are hidden before showing the target
+                    tabPanes.forEach(pane => {
+                        if (pane !== targetPane) {
+                            pane.classList.add('hidden');
+                            pane.classList.remove('active-tab-content');
+                            pane.style.opacity = 0;
+                        }
+                    });
+
+                    if (targetPane) {
+                        targetPane.classList.remove('hidden'); // Make it display: block
+                        void targetPane.offsetWidth; // Force reflow to ensure transition
+                        targetPane.classList.add('active-tab-content'); // Trigger fade-in
+                        resetAndObserveAnimations(targetPane);
+                    }
+                    handlePhasesSpecificLogic(targetId);
+                };
+
+                if (currentActivePane) {
+                    // Remove active-tab-content to start fade-out
+                    currentActivePane.classList.remove('active-tab-content');
+                    currentActivePane.style.opacity = 0; // Explicitly set opacity to 0
+
+                    // Add event listener for transition end
+                    const onTransitionEnd = () => {
+                        currentActivePane.removeEventListener('transitionend', onTransitionEnd);
+                        activateNewPane(); // Activate new pane after current one fades out
+                    };
+                    currentActivePane.addEventListener('transitionend', onTransitionEnd);
+
+                    // Fallback timeout in case transitionend doesn't fire (e.g., interrupted by quick clicks)
+                    setTimeout(() => {
+                        if (!transitionEnded) { // Check the flag again before activating
+                            transitionEnded = true; // Set the flag if timeout wins
+                            currentActivePane.removeEventListener('transitionend', onTransitionEnd); // Clean up in case timeout wins
+                            activateNewPane();
+                        }
+                    }, 600); // Slightly longer than CSS transition (0.5s)
+                } else {
+                    // Initial load or no current active pane
+                    activateNewPane();
+                }
             }
 
+            function handlePhasesSpecificLogic(targetId) {
+                if (targetId === 'phases') {
+                    const phase1Card = document.getElementById('phase1-card');
+                    if (phase1Card) {
+                        phase1Card.classList.remove('hidden');
+                        showPhaseContent('phase1'); // Show the first phase content and activate its button
+                    }
+                    initializeChart(); // Initialize chart when phases tab is shown
+                } else {
+                    // Hide all phase content cards when not on the phases tab
+                    phaseContentCards.forEach(card => {
+                        card.classList.remove('active');
+                        card.classList.add('hidden');
+                    });
+                    stepButtons.forEach(button => button.classList.remove('active'));
+                }
+            }
 
             mainTabs.forEach(tab => {
                 tab.addEventListener('click', () => {
@@ -602,6 +707,7 @@
                     // Destroy existing chart instance if it exists before creating a new one
                     if (timelineChartInstance) {
                         timelineChartInstance.destroy();
+                        timelineChartInstance = null; // Clear the reference
                     }
 
                     const phaseData = {
@@ -722,58 +828,6 @@
                         }
                     });
                 }
-            }
-
-            // Scroll animation logic
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.1
-            };
-
-            const observer = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('is-visible');
-                        // Specific logic for Venn diagram
-                        if (entry.target.classList.contains('venn-diagram-container')) {
-                            entry.target.classList.add('is-visible');
-                        }
-                        // Specific logic for list items within phase cards
-                        if (entry.target.classList.contains('phase-content-card') || entry.target.tagName === 'SECTION') {
-                            const listItems = entry.target.querySelectorAll('.animated-list-item');
-                            listItems.forEach((item, index) => {
-                                item.style.transitionDelay = `${index * 0.1}s`;
-                                item.classList.add('is-visible');
-                            });
-                        }
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, observerOptions);
-
-            function setupScrollAnimations() {
-                // Observe all elements with animate-on-scroll class
-                document.querySelectorAll('.animate-on-scroll').forEach(element => {
-                    observer.observe(element);
-                });
-                // Observe the Venn diagram container directly
-                const vennDiagramContainer = document.querySelector('.venn-diagram-container');
-                if (vennDiagramContainer) {
-                    observer.observe(vennDiagramContainer);
-                }
-            }
-
-            function resetAndObserveAnimations(container) {
-                // Remove 'is-visible' from all animated elements within the container
-                container.querySelectorAll('.animate-on-scroll, .animated-list-item, .venn-diagram-container').forEach(el => {
-                    el.classList.remove('is-visible');
-                });
-
-                // Re-observe them
-                container.querySelectorAll('.animate-on-scroll, .animated-list-item, .venn-diagram-container').forEach(el => {
-                    observer.observe(el);
-                });
             }
         });
     </script>
